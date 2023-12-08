@@ -74,6 +74,7 @@ function getNews() {
 }
 
 function performSearch() {
+    $("main").empty();
     search()
     getNews()
 }
