@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EQUIT I</title>
+    <title>EQUITY I</title>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.17.11/dist/css/uikit.min.css" />
@@ -19,57 +19,50 @@
 
 <body>
     <!--navbar-->
-
-    <div id="navbar" uk-sticky="sel-target: .uk-navbar-container; cls-active: uk-navbar-sticky; end: + *; offset: 80">
-
+    <nav id="navbar" uk-sticky="sel-target: .uk-navbar-container; cls-active: uk-navbar-sticky; end: + *; offset: 80; ">
         <nav class="uk-navbar-container">
             <nav class="uk-container" id="blueNav">
                 <nav uk-navbar>
-
                     <nav class="uk-navbar-left">
-
                         <ul class="uk-navbar-nav">
-
                             <li>
                                 <a href="#" class="options">Options</a>
-                                <div class="uk-navbar-dropdown">
+                                <nav class="uk-navbar-dropdown">
                                     <ul class="uk-nav uk-navbar-dropdown-nav">
-
                                         <li><a href="#"><i class="fas fa-poll"></i>Five Biggest Movers</a></li>
                                         <li><a href="#"><i class="fas fa-search"></i>Find Stock</a></li>
-                                        </li>
-                                    </ul>
-                                </div>
                             </li>
                         </ul>
-                        <nav class="uk-navbar-center uk-flex uk-flex-center">
-                            <h1>Equity <span id="serifI">I</span></h1>
-                        </nav>
-
-                    </div>
-
+                    </nav>
+                    </li>
+                    </ul>
+                    <nav class="uk-navbar-center uk-flex uk-flex-center">
+                        <h1>Equity<span id="serifI">I</span></h1>
+                    </nav>
                 </nav>
             </nav>
         </nav>
-
-    </div>
+    </nav>
 
 
 
     <main>
 
-        
-
-
-
-
-
+        <!--gray box with text-->
+        <div id="cardParent">
+            <div class="uk-card uk-card-default uk-card-body uk-width-1-2@m" id="welcome">
+                <p>the full scoop on current stocks
+                </p>
+            </div>
+    
+    
+    
+        </div>
 
     </main>
 
 
 
-    <!--footer-->
 
     <link rel="stylesheet" href="assets/js/script.js">
 </body>

@@ -1,14 +1,38 @@
-
+/*navbar*/
 .uk-navbar-container  {
-    border-bottom: 2px solid blue;
     margin-left: 8px;
     margin-right: 8px;
+    border-bottom: 2px solid blue;
 }
 
+
+
+/*title*/
 h1 {
     font-weight: bold;
     color: black;
 }
 #serifI {
     font-family: 'Noto Serif', serif;
+}
+
+
+
+/*Gray box with text */
+#cardParent {
+    position: relative;
+    top:90px;
+    border-radius: 10px;
+    
+}
+/*Gray box with text */
+#welcome {
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color:white;
+    background: rgba(0, 0, 0, 0.5);
+    border-bottom: 2px solid blue;
+    
 }
