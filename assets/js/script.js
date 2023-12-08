@@ -76,7 +76,7 @@ function getNews() {
 
 function performSearch() {
     $("main").empty();
-    $("#searchInstruction").text("")
+
     search()
     getNews()
 }
