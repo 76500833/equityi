@@ -4,7 +4,7 @@ let apiKey = "okPpp2JvzuT94Kf1DJKeopxgFtX6BKXH";
 
 // called when a specific ticker is searched (in search.html)
 function search() {
-    let ticker = $("#searchInput").val()
+    let ticker = $("#searchInput").val().toUpperCase()
     stockPreviousClose(ticker)
 }
 
@@ -50,7 +50,7 @@ function stockPreviousClose(ticker){
 
 //TODO fetch news article and append them to the page.
 function getNews() {
-    let ticker = $("#searchInput").val()
+    let ticker = $("#searchInput").val().toUpperCase()
     let url = "https://api.polygon.io/v2/reference/news?ticker=" + ticker + "&apiKey=WQO8bPpVFXoHXcm7Uj3d7OeGCtLIMclh"
     console.log(ticker)
     fetch(url)
@@ -65,7 +65,7 @@ function getNews() {
                 //data is ten news articles, but we're just dealing with the first one: [0]
                 let sectionEl = $("<section>")
                 let headerEl = $("<h1>").text(data.results[0].title);
-                let descriptionEl = $("<h5>").text(data.results[0].description)
+                let descriptionEl = $("<h2>").text(data.results[0].description)
                 sectionEl.append(headerEl)
                 sectionEl.append(descriptionEl)
                 $("main").append(sectionEl)
@@ -73,8 +73,15 @@ function getNews() {
         });
 }
 
+
 function performSearch() {
     $("main").empty();
+    $("#searchInstruction").text("")
     search()
     getNews()
 }
+
+// document.getElementById('searchForm').addEventListener('submit', function(event) {
+//     event.preventDefault(); // Prevent the form from being submitted normally
+//     performSearch();
+// });

@@ -1,18 +1,50 @@
-!   <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Search</title><script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    
+    <title>Search</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.17.11/dist/css/uikit.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/uikit@3.17.11/dist/js/uikit.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/uikit@3.17.11/dist/js/uikit-icons.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lumanosimo&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="assets/css/style.css">
 </head>
+
 <body>
-    <input type="text" id="searchInput">
-    <button onclick="performSearch()">Search</button>
+    <!-- <input type="text" id="searchInput">
+    <button onclick="performSearch()">Search</button> -->
+    <div id="navAndSearch">
+        
 
-<main></main>
+        <div class="uk-margin">
+            
+    <h1 id="searchInstruction">Find a stock to research</h1>
+    
+            <input class="uk-input uk-form-width-medium" type="text" placeholder="" aria-label="Default"
+                id="searchInput">
+            <button class="uk-button uk-button-default" onclick="performSearch()" id="search">Search</button>
 
-<section><a href="index.html">Home</a></section>
+            <a class="uk-button uk-button-default" id="home" href="index.html"><i class="fas fa-home"></i></a>
+
+        </div>
+    </div>
+
+
+
+    <main></main>
+
+
     <script src="./assets/js/script.js"></script>
 </body>
+
 </html>
