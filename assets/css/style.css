@@ -1,9 +1,13 @@
-/*navbar*/
-.uk-navbar-container  {
-    margin-left: 8px;
-    margin-right: 8px;
-    border-bottom: 2px solid blue;
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
 }
+#navbar .uk-navbar-container {
+    background-color: transparent;
+}
+
+
 
 
 
@@ -16,23 +20,55 @@ h1 {
     font-family: 'Noto Serif', serif;
 }
 
-
-
-/*Gray box with text */
-#cardParent {
-    position: relative;
-    top:90px;
-    border-radius: 10px;
-    
-}
-/*Gray box with text */
-#welcome {
+.cover {
     position: absolute;
-    top: 20%;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1; /* This will make the image go behind the navbar */
+}
+
+#coverImg {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+h1 {
+    color: black;
+
+}
+.uk-navbar-nav {
+    display: flex;
+    justify-content: space-between;
+}
+#Nav {
+    display: flex;
+    align-items: center;
+
+
+}
+#titleContainer{
+    display: flex;
+    justify-content: center;
+}
+/* .cover {
+    position: relative;
+}
+
+#coverImg {
+    width: 100%;
+    height: auto;
+} */
+
+#title {
+    position: absolute;
+    top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    color:white;
-    background: rgba(0, 0, 0, 0.5);
-    border-bottom: 2px solid blue;
-    
+    color: white;
+    font-weight: bold;
+    font-family: 'Noto Serif', serif;
+    font-size: 100px;
 }
