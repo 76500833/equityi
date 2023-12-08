@@ -59,6 +59,8 @@ function getNews() {
         })
         .then(function(data) {
             if (data) {
+                //clear main so fresh data will replace it
+                $("main").empty()
                 //start appending data
                 //data is ten news articles, but we're just dealing with the first one: [0]
                 let sectionEl = $("<section>")
