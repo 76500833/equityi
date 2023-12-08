@@ -6,7 +6,9 @@ body, html {
 #navbar .uk-navbar-container {
     background-color: transparent;
 }
-
+.uk-navbar-dropdown {
+    border-radius: 10px;
+}
 
 
 
@@ -15,9 +17,8 @@ body, html {
 h1 {
     font-weight: bold;
     color: black;
-}
-#serifI {
-    font-family: 'Noto Serif', serif;
+   
+
 }
 
 .cover {
@@ -64,11 +65,30 @@ h1 {
 
 #title {
     position: absolute;
-    top: 50%;
+    top: 5%;
     left: 50%;
     transform: translate(-50%, -50%);
     color: white;
     font-weight: bold;
-    font-family: 'Noto Serif', serif;
+   
     font-size: 100px;
+}
+#i {
+    display: inline;
+    font-family: 'Lumanosimo', 'Times New Roman', Times, serif;
+}
+/* Reduce the font-size when the screen width is 600px or less */
+@media (max-width: 773px) {
+    #title {
+        font-size: 50px;
+    }
+}
+@media (max-width: 394px) {
+    #title {
+        font-size: 30px;
+    }
+}
+.uk-navbar-dropdown {
+    left: auto !important;
+    right: 100 !important;
 }
