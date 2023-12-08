@@ -1,63 +1,77 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EQUIT I</title>
-    
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.17.11/dist/css/uikit.min.css" />
     <script src="https://cdn.jsdelivr.net/npm/uikit@3.17.11/dist/js/uikit.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/uikit@3.17.11/dist/js/uikit-icons.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
+
 <body>
     <!--navbar-->
-    <nav class="uk-navbar-container">
-        <div class="uk-container">
-            <div uk-navbar>
-    
-                <div class="uk-navbar-left">
-    
-                    <ul class="uk-navbar-nav">
-                        
-                        <li>
-                            <a href="#">nav</a>
-                            <div class="uk-navbar-dropdown">
-                                <ul class="uk-nav uk-navbar-dropdown-nav">
-                                    
-                                    <li><a href="#">Favorites</a></li>
-                                    <li><a href="#">5 Big Movers</a></li>
-                                    <li><a href="#">Search</a></li>
-                                </ul>
-                            </div>
-                        </li>
-                        
-                    </ul>
-    
-                </div>
-    
-            </div>
-        </div>
-    </nav>
+
+    <div id="navbar" uk-sticky="sel-target: .uk-navbar-container; cls-active: uk-navbar-sticky; end: + *; offset: 80">
+
+        <nav class="uk-navbar-container">
+            <nav class="uk-container" id="blueNav">
+                <nav uk-navbar>
+
+                    <nav class="uk-navbar-left">
+
+                        <ul class="uk-navbar-nav">
+
+                            <li>
+                                <a href="#" class="options">Options</a>
+                                <div class="uk-navbar-dropdown">
+                                    <ul class="uk-nav uk-navbar-dropdown-nav">
+
+                                        <li><a href="#"><i class="fas fa-poll"></i>Five Biggest Movers</a></li>
+                                        <li><a href="#"><i class="fas fa-search"></i>Find Stock</a></li>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
+                        </ul>
+                        <nav class="uk-navbar-center uk-flex uk-flex-center">
+                            <h1>Equity <span id="serifI">I</span></h1>
+                        </nav>
+
+                    </div>
+
+                </nav>
+            </nav>
+        </nav>
+
+    </div>
+
+
 
     <main>
 
-
-
-
-
-
-
         
+
+
+
+
+
+
     </main>
 
 
 
     <!--footer-->
-<div class="footer">
-  <p>Footer</p>
-</div>
+
     <link rel="stylesheet" href="assets/js/script.js">
 </body>
+
 </html>

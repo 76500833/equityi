@@ -1,9 +1,14 @@
-.footer {
-    position: fixed;
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    background-color: #DDDDDD;
-    color: #767676;
-    text-align: center;
-  }
+
+.uk-navbar-container  {
+    border-bottom: 2px solid blue;
+    margin-left: 8px;
+    margin-right: 8px;
+}
+
+h1 {
+    font-weight: bold;
+    color: black;
+}
+#serifI {
+    font-family: 'Noto Serif', serif;
+}
