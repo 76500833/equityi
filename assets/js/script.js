@@ -1,6 +1,13 @@
 
 //$().on("click",StockPreviousClose($().val))
-let apiKey = "";
+let apiKey = "okPpp2JvzuT94Kf1DJKeopxgFtX6BKXH";
+
+// called when a specific ticker is searched (in search.html)
+function search() {
+    let ticker = $("#searchInput").val()
+    stockPreviousClose(ticker)
+}
+
 
 function stockPreviousClose(ticker){
     apiUrl= "https://api.polygon.io/v2/aggs/ticker/" + ticker + "/prev?adjusted=true&" + "apiKey=" + apiKey; //concatonates the endpoint
@@ -14,6 +21,7 @@ function stockPreviousClose(ticker){
             return response.json();
         })
         .then(function(data){
+
             if (data){
             // To do: add Style to this section element and their children 
                 let sectionEl = $("<section>")
