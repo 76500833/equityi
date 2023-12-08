@@ -1,9 +1,57 @@
+let activeTickers = {};
+let apiKey = "okPpp2JvzuT94Kf1DJKeopxgFtX6BKXH";
+let tickerObjects = [];
+//populates the activeTickers object with a timestamp, and an array of all active tickers
+function populateActiveTickers (){
+    let apiUrl = "https://api.polygon.io/v3/reference/tickers?active=true&limit=1000&sort=ticker&apiKey=" + apiKey;
+    fetch(apiUrl)
+    .then(function(response){
+        if (response.status !== 200){
+            //To do: display modal clarifying the error
+            return new Promise();
+        }
+        return response.json();
+    })
+    .then(parseNextPage)
+}
+function parseNextPage(data){
+    if (data){
+        tickerObjects = tickerObjects.concat(data.results)
+        let nextPage = data.next_url;
+        if(nextPage) {
+            fetch(nextPage + "&apiKey=" + apiKey)
+            .then(function(response){
+                if (response.status !== 200){
+                    //To do: display modal clarifying the error
+                    return new Promise();
+                }
+                return response.json();
+            })
+            .then(parseNextPage)
+        } else {
+            activeTickers.tickerList = tickerObjects.map((i) => i.ticker)
+            activeTickers.timeCreated = Math.floor(Date.now() / 1000);
+            localStorage.setItem("active-tickers", JSON.stringify(activeTickers)) 
+        }
+    }    
+}
+   
+if (localStorage.getItem("active-tickers")){
+    activeTickers = JSON.parse(localStorage.getItem("active-tickers"))
+    if (Math.floor(Date.now() / 1000) - activeTickers.timeCreated >= 86400){ //checks if the local data is older than 24 hours
+        populateActiveTickers () 
+    }
+} else {
+    populateActiveTickers()
+}
+
+
 
 //$().on("click",StockPreviousClose($().val))
-let apiKey = "";
+
 
 function stockPreviousClose(ticker){
-    apiUrl= "https://api.polygon.io/v2/aggs/ticker/" + ticker + "/prev?adjusted=true&" + "apiKey=" + apiKey; //concatonates the endpoint
+    let apiUrl= "https://api.polygon.io/v2/aggs/ticker/" + ticker + "/prev?adjusted=true&" + "apiKey=" + apiKey; //concatonates the endpoint
 
     fetch(apiUrl)
         .then(function(response){
