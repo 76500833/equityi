@@ -45,10 +45,10 @@ if (localStorage.getItem("active-tickers")){
     populateActiveTickers()
 }
 
-
-
-//$().on("click",StockPreviousClose($().val))
-
+// called when a specific ticker is searched (in search.html)
+function search() {
+    let ticker = $("#searchInput").val().toUpperCase()
+    stockPreviousClose(ticker)
 
 function stockPreviousClose(ticker){
     let apiUrl= "https://api.polygon.io/v2/aggs/ticker/" + ticker + "/prev?adjusted=true&" + "apiKey=" + apiKey; //concatonates the endpoint
@@ -57,11 +57,13 @@ function stockPreviousClose(ticker){
         .then(function(response){
             if (response.status !== 200){
                 //To do: display modal clarifying the error
-                return new Promise();
+                throw new Error("response status is not 200")
             }
             return response.json();
         })
         .then(function(data){
+            
+
             if (data){
             // To do: add Style to this section element and their children 
                 let sectionEl = $("<section>")
@@ -76,7 +78,7 @@ function stockPreviousClose(ticker){
                 ulEl.append(highestPriceLiEl)
                 let lowestPriceLiEl = $("<li>Lowest Price: " + data.results[0].l + "</li>");
                 ulEl.append(lowestPriceLiEl)
-                let numOfTransactionsLiEl = $("<li>Number of Transactions: " + data.results[0].n + "</li>");
+                let numOfTransactionsLiEl = $("<li>Number of transactions: " + data.results[0].n + "</li>");
                 ulEl.append(numOfTransactionsLiEl)
                 let tradingVolumeLiEl = $("<li>Trading Volume: " + data.results[0].v + "</li>");
                 ulEl.append(tradingVolumeLiEl)
@@ -88,6 +90,39 @@ function stockPreviousClose(ticker){
         })
     }
 
+
+//TODO fetch news article and append them to the page.
+function getNews() {
+    let ticker = $("#searchInput").val().toUpperCase()
+    let url = "https://api.polygon.io/v2/reference/news?ticker=" + ticker + "&apiKey=WQO8bPpVFXoHXcm7Uj3d7OeGCtLIMclh"
+    console.log(ticker)
+    fetch(url)
+        .then(function(response) {
+            return response.json();
+        })
+        .then(function(data) {
+            if (data) {
+                //clear main so fresh data will replace it
+                
+                //start appending data
+                //data is ten news articles, but we're just dealing with the first one: [0]
+                let sectionEl = $("<section>")
+                let headerEl = $("<h1>").text(data.results[0].title);
+                let descriptionEl = $("<h2>").text(data.results[0].description)
+                sectionEl.append(headerEl)
+                sectionEl.append(descriptionEl)
+                $("main").append(sectionEl)
+            }
+        });
+}
+
+
+function performSearch() {
+    $("main").empty();
+
+    search()
+    getNews()
+}
 
 // fetch request for Polygon API which will get top 5 stocks and bottom 5 stocks
 // depending on user input as well as the event listeners
