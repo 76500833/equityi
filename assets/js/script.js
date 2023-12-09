@@ -49,6 +49,7 @@ if (localStorage.getItem("active-tickers")){
 function search() {
     let ticker = $("#searchInput").val().toUpperCase()
     stockPreviousClose(ticker)
+}
 
 function stockPreviousClose(ticker){
     let apiUrl= "https://api.polygon.io/v2/aggs/ticker/" + ticker + "/prev?adjusted=true&" + "apiKey=" + apiKey; //concatonates the endpoint
