@@ -1,5 +1,6 @@
 let activeTickers = {};
 let apiKey = "okPpp2JvzuT94Kf1DJKeopxgFtX6BKXH";
+// To do: privitize this tis whole block
 let tickerObjects = [];
 //populates the activeTickers object with a timestamp, and an array of all active tickers
 function populateActiveTickers (){
@@ -45,11 +46,28 @@ if (localStorage.getItem("active-tickers")){
     populateActiveTickers()
 }
 
-// called when a specific ticker is searched (in search.html)
-function search() {
-    let ticker = $("#searchInput").val().toUpperCase()
-    stockPreviousClose(ticker)
-}
+//Displays the stock lookup functionality, and adds event listener to the submit to perform the utility.
+$("#stock-look-up-tool").on("click", function (){
+    $("main").empty();
+    let formEl = $("<form id = 'stock-look-up-form class = 'uk-margin'></form>");
+    formEl.append($("<label for='ticker-input'>Search by Ticker</label>"));
+    formEl.append($("<textarea id='ticker-input' name='ticker-input' rows='1' cols='10'></textarea>"))
+    formEl.append($("<input type='submit' id='ticker-input-submit' value='Search'>"))
+    $("main").append(formEl)
+    return $("#ticker-input-submit").on("click", function (event){
+        event.preventDefault()
+        let searchedTicker = $("#ticker-input").val().toUpperCase();
+        $("#ticker-input").val("")
+        if (activeTickers.tickerList.includes(searchedTicker)){
+            stockPreviousClose(searchedTicker)
+        } else {
+            //To do: CHange to modal
+            alert("This ticker doesn't exist/isn't currently active")
+        }
+
+    });
+})
+
 
 function stockPreviousClose(ticker){
     let apiUrl= "https://api.polygon.io/v2/aggs/ticker/" + ticker + "/prev?adjusted=true&" + "apiKey=" + apiKey; //concatonates the endpoint
@@ -117,14 +135,6 @@ function getNews() {
         });
 }
 
-
-function performSearch() {
-    $("main").empty();
-
-    search()
-    getNews()
-}
-
 // fetch request for Polygon API which will get top 5 stocks and bottom 5 stocks
 // depending on user input as well as the event listeners
 var ulList = document.querySelector("#ulList")
@@ -154,4 +164,4 @@ function getApi() {
     });
 }
 
-fetchButton.addEventListener('click', getApi);
+//fetchButton.addEventListener('click', getApi);
