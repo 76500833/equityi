@@ -92,6 +92,9 @@ h1 {
                 -50px -50px 43px #8ab2ff;
 }
 
+#stock-look-up-tool:hover {
+    cursor: default;
+}
 
 /*glow*/
 /* -webkit-box-shadow:0px 0px 231px 61px rgba(51,0,255,0.9);

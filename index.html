@@ -23,31 +23,26 @@
 <body>
     <!--navbar-->
     <nav id="navbar" uk-sticky="sel-target: .uk-navbar-container; cls-active: uk-navbar-sticky; end: + *; offset: 80;">
-        <nav class="uk-navbar-container">
-            <nav class="uk-container" id="Nav">
-                <nav uk-navbar>
-                    <nav class="uk-navbar-left">
+        <div class="uk-navbar-container">
+            <div class="uk-container" id="Nav">
+                <div uk-navbar>
+                    <div class="uk-navbar-left">
                         <ul class="uk-navbar-nav">
                             <li>
-                                <a class="uk-navbar-toggle" uk-navbar-toggle-icon href=""></a>
+                                <div class="uk-navbar-toggle" uk-navbar-toggle-icon href=""></div>
                                     <!--<a href="#" class="options"><li><a href="#">functionality</i></a>-->
-                                <nav class="uk-navbar-dropdown">
+                                <div class="uk-navbar-dropdown">
                                     <ul class="uk-nav uk-navbar-dropdown-nav">
-                                        <li><a href="#"><i class="fas fa-poll"></i>Feaure</a></li>
-                                        <li><a href="search.html"><i class="fas fa-search"></i>Stocks</a></li>
+                                        <li><div><i class="fas fa-poll"></i>Feaure</div></li>
+                                        <li><div id="stock-look-up-tool"><i class="fas fa-search"></i>Stocks</div></li>
+                                    </ul>                        
+                                </div>
                             </li>
-                        </ul>
-                        
-                    </nav>
-                    </li>
-                    </ul>
-                    
-                </nav>
-                
-            </nav>
-           
-        </nav>
-    </nav>
+                        </ul>                   
+                    </div>                
+                </div>          
+            </div>
+        </div>
     </nav>
 
 
@@ -64,7 +59,7 @@
 
 
 
-    <link rel="stylesheet" href="assets/js/script.js">
+    <script src="assets/js/script.js"></script>
 </body>
 
 </html>
