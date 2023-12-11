@@ -49,11 +49,45 @@ if (localStorage.getItem("active-tickers")){
 //Displays the stock lookup functionality, and adds event listener to the submit to perform the utility.
 $("#stock-look-up-tool").on("click", function (){
     $("main").empty();
-    let formEl = $("<form id = 'stock-look-up-form class = 'uk-margin'></form>");
-    formEl.append($("<label for='ticker-input'>Search by Ticker</label>"));
-    formEl.append($("<textarea id='ticker-input' name='ticker-input' rows='1' cols='10'></textarea>"))
-    formEl.append($("<input type='submit' id='ticker-input-submit' value='Search'>"))
-    $("main").append(formEl)
+    //styling the (entire) form:
+    let formEl = $("<form id = 'stock-look-up-form class = 'uk-margin'></form>").css({
+        "display": "flex",
+        "gap": "20px",
+        "flex-direction": "row",
+        "margin-top": "15px",
+        "margin-left": "20%",
+        "margin-right": "20%",
+
+
+        
+        "padding": "20px",
+        "border-radius": "10px",
+        "color": "black",
+        
+    })
+    //styling the header for the form
+    formEl.append($("<label for='ticker-input'>Search by Ticker</label>")).css({
+        "font-size": "20px"
+        //TODO choose font
+
+        //TODO SEARCH WILL BE TURNED INTO A FUNCTION.
+    })
+    //styling the
+    formEl.append($("<textarea id='ticker-input' name='ticker-input' rows='1' cols='10'></textarea>")).css({
+        "outline": "none",
+        "border": "none",
+        "resize": "none",
+        "border-radius": "20px",
+    });
+    formEl.append($("<input type='submit' id='ticker-input-submit' value='Search'>")).css({
+        "outline": "none",
+        "border": "none",
+
+    })
+    let sectionEl = $("<section>")
+    $("main").before(sectionEl)
+    sectionEl.append(formEl)
+   
     return $("#ticker-input-submit").on("click", function (event){
         event.preventDefault()
         let searchedTicker = $("#ticker-input").val().toUpperCase();
