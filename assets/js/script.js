@@ -94,6 +94,7 @@ $("#stock-look-up-tool").on("click", function (){
     })
     let sectionEl = $("<section>").attr("id", "sectionElForCard")
     $("main").before(sectionEl)
+
     sectionEl.append(formEl)
    
     return $("#ticker-input-submit").on("click", function (event){
@@ -137,7 +138,9 @@ function stockPreviousClose(ticker){
                 let sectionEl = $("<section>")
                 let headerEl = $("<h3>" + data.results[0].T + "</h3>"); //creates a header element with text content of the ticker Title
                 sectionEl.append(headerEl);
-                let ulEl = $("<ul>");
+                let ulEl = $("<ul>").css(
+                    {"list-style": "none",
+                });
                 let openPriceLiEl = $("<li>Open Price: " + data.results[0].o + "</li>");
                 ulEl.append(openPriceLiEl)
                 let closePriceLiEl = $("<li>Close Price: " + data.results[0].c + "</li>");
@@ -156,6 +159,7 @@ function stockPreviousClose(ticker){
                     "grid-template-columns": "repeat(auto-fill, minmax(400px, 1fr))", // This will create as many columns as can fit without any of them having a width less than 250px
                     "gap": "20px"
                 });
+                
                 ulEl.append(volumeWeightedAvgPrice);
 
                 headerEl.css({
@@ -168,11 +172,12 @@ function stockPreviousClose(ticker){
                     "background-color": "#080097",
                     "flex-direction": "column",
                     "width": "fit-content",
-                    "text-align": "left",
+                    "text-align": "center",
                     // "gap": "5px",
                     "border-radius": "10px",
                     "padding":"15px",
                     "margin" : "45px",
+                   
                     // "height": "fit-content"
                   
                 })

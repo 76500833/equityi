@@ -123,9 +123,7 @@ box-shadow:  50px 50px 43px #3c4e78,
 
 
 
-ul {
-   
-}
+
 
 main {
 
@@ -135,6 +133,7 @@ main {
     justify-content: center;
     text-align: center;
     width: 100vw;
+    list-style: none;
 
 
 
@@ -143,6 +142,7 @@ main {
 
 #stock-look-up-form {
 color: white;
+
 
 }
 
