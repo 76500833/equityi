@@ -46,6 +46,27 @@ if (localStorage.getItem("active-tickers")){
     populateActiveTickers()
 }
 
+// working on favorites logic
+let favoriteTickers = []
+//TODO create favorite button on each sectionEl (card) wth a id of favoriteCard
+//TODO add an event listener to the favoriteCard button that adds the ticker to the list
+$("#favorite-button").on("click", function() {
+    // Get the ticker value from the input field
+    let ticker = $("#ticker-input").val();
+
+    // Add the ticker to the favoriteTickers array
+    favoriteTickers.push(ticker);
+
+    // Clear the input field
+    $("#ticker-input").val("");
+});
+//TODO add an click listener to the favorite link that clears the page and runs something like: 
+// favoriteTickers.forEach(function(ticker) {
+//     console.log('Function called with ticker: ' + ticker);
+//     $("main").clear()
+//     //TODO run stockPreviousClose(ticker)
+// })
+//141
 //Displays the stock lookup functionality, and adds event listener to the submit to perform the utility.
 $("#stock-look-up-tool").on("click", function (){
     $("main").empty();
@@ -59,17 +80,12 @@ $("#stock-look-up-tool").on("click", function (){
         "margin-top": "15px",
         "margin-left": "20%",
         "margin-right": "20%",
-
-
-        
         "padding": "20px",
         "border-radius": "10px",
         "color": "black",
         "background-color": "#090580",
         "align-items": "center",
-        "color": "white",
-       
-        
+        "color": "white", 
     })
     //styling the header for the form
     formEl.append($("<label for='ticker-input'>Search by Ticker</label>")).css({
@@ -77,6 +93,7 @@ $("#stock-look-up-tool").on("click", function (){
         //TODO choose font
 
         //TODO SEARCH WILL BE TURNED INTO A FUNCTION.
+
     })
     //styling the
     formEl.append($("<textarea id='ticker-input' name='ticker-input' rows='1' cols='10'></textarea>").css({
@@ -113,12 +130,10 @@ $("#stock-look-up-tool").on("click", function (){
 
 //pressing equity I now clears the data from the page (the stock results)
 $("#equityI").on('click', function(){
-
     $("main").html('')
 })
 
-
-
+//run stockPreviousClose(favorites array) to display onto favorites page
 function stockPreviousClose(ticker){
     let apiUrl= "https://api.polygon.io/v2/aggs/ticker/" + ticker + "/prev?adjusted=true&" + "apiKey=" + apiKey; //concatonates the endpoint
 
@@ -135,9 +150,19 @@ function stockPreviousClose(ticker){
 
             if (data){
             // To do: add Style to this section element and their children 
-                let sectionEl = $("<section>")
+                let sectionEl = $("<section>").attr("id", "card")
                 let headerEl = $("<h3>" + data.results[0].T + "</h3>"); //creates a header element with text content of the ticker Title
                 sectionEl.append(headerEl);
+
+                //! adding favorite button
+                let favoriteButton = $("<button>").attr("id", "favoriteButton").css({
+                    "height": "fit-content",
+                    "width": "fit-content",
+                    "margin": "auto"
+                }).text("Favorite")
+                //! appending favorite button
+                sectionEl.append(favoriteButton)
+
                 let ulEl = $("<ul>").css(
                     {"list-style": "none",
                 });
@@ -177,9 +202,6 @@ function stockPreviousClose(ticker){
                     "border-radius": "10px",
                     "padding":"15px",
                     "margin" : "45px",
-                   
-                    // "height": "fit-content"
-                  
                 })
                 sectionEl.append(ulEl);
                 
