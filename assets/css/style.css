@@ -87,10 +87,23 @@ h1 {
 
 /* Dropdown goes to the rigt, not left */
 .uk-navbar-dropdown {
-    left: auto !important;
-    right: 100 !important;
+    /* left: auto !important; */
+    right: 100px !important;
+    top: 20px !important;
+    line-height: 30px;
+    opacity: 0.9;
+    /* display: flex;
+    align-items: space-around;
+    justify-content: center; */
+    
 }
-
+#stock-look-up-tool:hover {
+    cursor: pointer !important;
+}
+.uk-open {
+    width:fit-content;
+    font-size: 30px;
+}
 
 /* #search, #home {
     border: none;
@@ -110,6 +123,10 @@ h1 {
                 -50px -50px 43px #8ab2ff;
                 
 }
+.uk-navbar-dropdown-nav i {
+    margin-right: 10px;
+}
+
 
 #stock-look-up-tool:hover {
     cursor: default;

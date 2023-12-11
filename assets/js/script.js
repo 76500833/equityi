@@ -224,7 +224,7 @@ function stockPreviousClose(ticker) {
         });
         sectionEl.append(ulEl);
 
-        $("main").append(sectionEl);
+        $("main").prepend(sectionEl);
       }
     });
 }
