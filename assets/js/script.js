@@ -50,6 +50,8 @@ if (localStorage.getItem("active-tickers")){
 $("#stock-look-up-tool").on("click", function (){
     $("main").empty();
     //styling the (entire) form:
+    //TODO style button
+    //TODO make pushing enter submit form
     let formEl = $("<form id = 'stock-look-up-form class = 'uk-margin'></form>").css({
         "display": "flex",
         "gap": "20px",
@@ -63,6 +65,10 @@ $("#stock-look-up-tool").on("click", function (){
         "padding": "20px",
         "border-radius": "10px",
         "color": "black",
+        "background-color": "#090580",
+        "align-items": "center",
+        "color": "white",
+       
         
     })
     //styling the header for the form
@@ -73,16 +79,18 @@ $("#stock-look-up-tool").on("click", function (){
         //TODO SEARCH WILL BE TURNED INTO A FUNCTION.
     })
     //styling the
-    formEl.append($("<textarea id='ticker-input' name='ticker-input' rows='1' cols='10'></textarea>")).css({
+    formEl.append($("<textarea id='ticker-input' name='ticker-input' rows='1' cols='10'></textarea>").css({
         "outline": "none",
         "border": "none",
         "resize": "none",
         "border-radius": "20px",
-    });
+        "text-align": "center",
+        "height": "20px", // Set a specific height
+    "line-height": "20px" // Set line-height equal to the height
+    }));
     formEl.append($("<input type='submit' id='ticker-input-submit' value='Search'>")).css({
         "outline": "none",
         "border": "none",
-
     })
     let sectionEl = $("<section>").attr("id", "sectionElForCard")
     $("main").before(sectionEl)
