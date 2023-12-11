@@ -15,9 +15,16 @@ function populateActiveTickers (){
     })
     .then(parseNextPage)
 }
+/**
+ * Parses the next page of data and updates the tickerObjects array.
+ * If there is a next page, it fetches the data using the provided apiKey and recursively calls itself.
+ * Once all pages have been parsed, it updates the activeTickers object and stores it in the local storage.
+ * @param {Object} data - The data object containing the results and next_url.
+ */
 function parseNextPage(data){
     if (data){
         tickerObjects = tickerObjects.concat(data.results)
+        
         let nextPage = data.next_url;
         if(nextPage) {
             fetch(nextPage + "&apiKey=" + apiKey)
@@ -30,8 +37,12 @@ function parseNextPage(data){
             })
             .then(parseNextPage)
         } else {
+            //.map looks at each object one by one, calls it i, and looks at its .ticker (the ticker)
+            // and creates a new list inside of activeTickers object, assigning the tickers into the list.
             activeTickers.tickerList = tickerObjects.map((i) => i.ticker)
+            //tracks when active tickers was last updated
             activeTickers.timeCreated = Math.floor(Date.now() / 1000);
+            //puts object in local storage
             localStorage.setItem("active-tickers", JSON.stringify(activeTickers)) 
         }
     }    
@@ -42,6 +53,7 @@ if (localStorage.getItem("active-tickers")){
     if (Math.floor(Date.now() / 1000) - activeTickers.timeCreated >= 86400){ //checks if the local data is older than 24 hours
         populateActiveTickers () 
     }
+    //?isnt this else block redundant because we only want to update every 24hrs?
 } else {
     populateActiveTickers()
 }
@@ -49,9 +61,6 @@ if (localStorage.getItem("active-tickers")){
 //Displays the stock lookup functionality, and adds event listener to the submit to perform the utility.
 $("#stock-look-up-tool").on("click", function (){
     $("main").empty();
-    //styling the (entire) form:
-    //TODO style button
-    //TODO make pushing enter submit form
     let formEl = $("<form id = 'stock-look-up-form' class = 'uk-margin'></form>").css({
         "display": "flex",
         "gap": "20px",
