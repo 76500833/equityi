@@ -84,7 +84,7 @@ $("#stock-look-up-tool").on("click", function (){
         "border": "none",
 
     })
-    let sectionEl = $("<section>")
+    let sectionEl = $("<section>").attr("id", "sectionElForCard")
     $("main").before(sectionEl)
     sectionEl.append(formEl)
    
@@ -101,6 +101,13 @@ $("#stock-look-up-tool").on("click", function (){
 
     });
 })
+
+//pressing equity I now clears the data from the page (the stock results)
+$("#equityI").on('click', function(){
+
+    $("main").html('')
+})
+
 
 
 function stockPreviousClose(ticker){
