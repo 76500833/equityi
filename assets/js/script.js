@@ -46,34 +46,13 @@ if (localStorage.getItem("active-tickers")){
     populateActiveTickers()
 }
 
-// working on favorites logic
-let favoriteTickers = []
-//TODO create favorite button on each sectionEl (card) wth a id of favoriteCard
-//TODO add an event listener to the favoriteCard button that adds the ticker to the list
-$("#favorite-button").on("click", function() {
-    // Get the ticker value from the input field
-    let ticker = $("#ticker-input").val();
-
-    // Add the ticker to the favoriteTickers array
-    favoriteTickers.push(ticker);
-
-    // Clear the input field
-    $("#ticker-input").val("");
-});
-//TODO add an click listener to the favorite link that clears the page and runs something like: 
-// favoriteTickers.forEach(function(ticker) {
-//     console.log('Function called with ticker: ' + ticker);
-//     $("main").clear()
-//     //TODO run stockPreviousClose(ticker)
-// })
-//141
 //Displays the stock lookup functionality, and adds event listener to the submit to perform the utility.
 $("#stock-look-up-tool").on("click", function (){
     $("main").empty();
     //styling the (entire) form:
     //TODO style button
     //TODO make pushing enter submit form
-    let formEl = $("<form id = 'stock-look-up-form class = 'uk-margin'></form>").css({
+    let formEl = $("<form id = 'stock-look-up-form' class = 'uk-margin'></form>").css({
         "display": "flex",
         "gap": "20px",
         "flex-direction": "row",
@@ -155,7 +134,7 @@ function stockPreviousClose(ticker){
                 sectionEl.append(headerEl);
 
                 //! adding favorite button
-                let favoriteButton = $("<button>").attr("id", "favoriteButton").css({
+                let favoriteButton = $("<button>").attr("class", "favorite-button").css({
                     "height": "fit-content",
                     "width": "fit-content",
                     "margin": "auto"
@@ -165,6 +144,8 @@ function stockPreviousClose(ticker){
 
                 let ulEl = $("<ul>").css(
                     {"list-style": "none",
+                   "padding": "10px",
+                   "margin": "0"
                 });
                 let openPriceLiEl = $("<li>Open Price: " + data.results[0].o + "</li>");
                 ulEl.append(openPriceLiEl)
