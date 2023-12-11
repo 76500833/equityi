@@ -151,8 +151,33 @@ function stockPreviousClose(ticker){
                 let tradingVolumeLiEl = $("<li>Trading Volume: " + data.results[0].v + "</li>");
                 ulEl.append(tradingVolumeLiEl)
                 let volumeWeightedAvgPrice = $("<li>Volume Weighted Average Price: " + data.results[0].vw + "</li>");
+                $("main").css({
+                    "display": "grid",
+                    "grid-template-columns": "repeat(auto-fill, minmax(400px, 1fr))", // This will create as many columns as can fit without any of them having a width less than 250px
+                    "gap": "20px"
+                });
                 ulEl.append(volumeWeightedAvgPrice);
+
+                headerEl.css({
+                    "color": "white",
+                  
+                })
+                sectionEl.css({
+                    "display": "flex",
+                    "color": "white",
+                    "background-color": "#080097",
+                    "flex-direction": "column",
+                    "width": "fit-content",
+                    "text-align": "left",
+                    // "gap": "5px",
+                    "border-radius": "10px",
+                    "padding":"15px",
+                    "margin" : "45px",
+                    // "height": "fit-content"
+                  
+                })
                 sectionEl.append(ulEl);
+                
                 $("main").append(sectionEl);
             }    
         })

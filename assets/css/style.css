@@ -11,7 +11,14 @@ body, html {
     background-color: #080097;
     
 }
+#hamburgerContainerAndDropDownContainer {
+    display: flex;
+    align-items: center;
+}
 
+#equityI {
+    color:white;
+}
 /*border radius to dropdown menu*/
 .uk-navbar-dropdown {
     border-radius: 10px;
@@ -117,7 +124,7 @@ box-shadow:  50px 50px 43px #3c4e78,
 
 
 ul {
-    list-style: none;
+   
 }
 
 main {
@@ -136,6 +143,6 @@ main {
 
 #stock-look-up-form {
 color: white;
-height: 15px;
+
 }
 
