@@ -1,7 +1,6 @@
 let apiKey = "okPpp2JvzuT94Kf1DJKeopxgFtX6BKXH";
 let activeTickers = {};
 
-// To do: privitize this tis whole block
 let tickerObjects = [];
 //populates the activeTickers object with a timestamp, and an array of all active tickers
 function populateActiveTickers() {
@@ -63,8 +62,8 @@ if (localStorage.getItem("active-tickers")) {
 
 
 //Displays the stock lookup functionality, and adds event listener to the submit to perform the utility.
-$("#stock-look-up-tool").on("click", function () {
-    $("main").empty();
+(function () {
+  
     let formEl = $(
       "<form id = 'stock-look-up-form' class = 'uk-margin'></form>"
     ).css({
@@ -116,23 +115,36 @@ $("#stock-look-up-tool").on("click", function () {
     $("main").before(sectionEl);
   
     sectionEl.append(formEl);
-  
-    return $("#ticker-input-submit").on("click", function (event) {
+
+    $("#ticker-input").on("keydown", function (event) {
+      if (event.originalEvent.key == "Enter"){
+        event.preventDefault()
+        $("#ticker-input-submit").trigger('click')
+      }
+    }
+    )
+    let displayedTickers = [];
+
+    $("#ticker-input-submit").on("click", function (event) {
       event.preventDefault();
       let searchedTicker = $("#ticker-input").val().toUpperCase();
       $("#ticker-input").val("");
+ 
+      if (displayedTickers.includes(searchedTicker)){
+        //TO DO: Change to modal
+        alert("You already have this ticker displayed")
+        return
+      }
+
       if (activeTickers.tickerList.includes(searchedTicker)) {
+        displayedTickers.push(searchedTicker)
         stockPreviousClose(searchedTicker);
       } else {
         //To do: CHange to modal
         alert("This ticker doesn't exist/isn't currently active");
       }
     });
-  });
-  
-  //unused
-  $("#equityI").on("click", function () {
-  });
+  })()
   
   //run stockPreviousClose(favorites array) to display onto favorites page
   function stockPreviousClose(ticker) {
