@@ -60,6 +60,7 @@ if (localStorage.getItem("active-tickers")) {
   populateActiveTickers();
 }
 
+let displayedTickers = [];
 
 //Displays the stock lookup functionality, and adds event listener to the submit to perform the utility.
 (function () {
@@ -123,7 +124,6 @@ if (localStorage.getItem("active-tickers")) {
     }
   }
   )
-  let displayedTickers = [];
 
   $("#ticker-input-submit").on("click", function (event) {
     event.preventDefault();
@@ -154,8 +154,8 @@ function stockPreviousClose(ticker) {
     "/prev?adjusted=true&" +
     "apiKey=" +
     apiKey; //concatonates the endpoint
-
-  fetch(apiUrl)
+    
+    fetch(apiUrl)
     .then(function (response) {
       if (response.status !== 200) {
         //To do: display modal clarifying the error
@@ -165,13 +165,22 @@ function stockPreviousClose(ticker) {
     })
     .then(function (data) {
       if (data) {
-        // To do: add Style to this section element and their children
+        let tickerSymbol = data.results[0].T;
+        let divEl = $("<div>").attr("id", tickerSymbol);
         let sectionEl = $("<section>").attr("id", "card");
-        let headerEl = $("<h3>" + data.results[0].T + "</h3>"); //creates a header element with text content of the ticker Title
+        let headerEl = $("<h3>" + tickerSymbol + "</h3>"); //creates a header element with text content of the ticker Title
         sectionEl.append(headerEl);
-
-        //! adding favorite button
-        let favoriteButton = $("<button>")
+        
+        //adding close btn
+        let closeBtn = $("<button " + "class = 'uk-position-absolute " +
+          "uk-position-small " +
+          "uk-position-top-right' " +
+          "type='button' uk-close></button>");
+        
+          
+          sectionEl.append(closeBtn)
+          //! adding favorite button
+          let favoriteButton = $("<button>")
           .attr("class", "favorite-button")
           .css({
             "height": "fit-content",
@@ -179,47 +188,47 @@ function stockPreviousClose(ticker) {
             "margin": "auto",
           })
           .text("Favorite");
-        //! appending favorite button
-        sectionEl.append(favoriteButton);
-
-        let ulEl = $("<ul>").css({
-          "list-style": "none",
-          padding: "10px",
-          margin: "0",
-        });
-        let openPriceLiEl = $("<li>Open Price: " + data.results[0].o + "</li>");
-        ulEl.append(openPriceLiEl);
-        let closePriceLiEl = $(
-          "<li>Close Price: " + data.results[0].c + "</li>"
-        );
-        ulEl.append(closePriceLiEl);
-        let highestPriceLiEl = $(
-          "<li>Highest Price: " + data.results[0].h + "</li>"
-        );
-        ulEl.append(highestPriceLiEl);
-        let lowestPriceLiEl = $(
-          "<li>Lowest Price: " + data.results[0].l + "</li>"
-        );
-        ulEl.append(lowestPriceLiEl);
-        let numOfTransactionsLiEl = $(
-          "<li>Number of transactions: " + data.results[0].n + "</li>"
-        );
-        ulEl.append(numOfTransactionsLiEl);
-        let tradingVolumeLiEl = $(
-          "<li>Trading Volume: " + data.results[0].v + "</li>"
-        );
-        ulEl.append(tradingVolumeLiEl);
-        let volumeWeightedAvgPrice = $(
-          "<li>Volume Weighted Average Price: " + data.results[0].vw + "</li>"
-        );
-        // $("main").css({
-        //   "display": "grid",
+          //! appending favorite button
+          sectionEl.append(favoriteButton);
+          
+          let ulEl = $("<ul>").css({
+            "list-style": "none",
+            padding: "10px",
+            margin: "0",
+          });
+          let openPriceLiEl = $("<li>Open Price: " + data.results[0].o + "</li>");
+          ulEl.append(openPriceLiEl);
+          let closePriceLiEl = $(
+            "<li>Close Price: " + data.results[0].c + "</li>"
+            );
+            ulEl.append(closePriceLiEl);
+            let highestPriceLiEl = $(
+              "<li>Highest Price: " + data.results[0].h + "</li>"
+              );
+              ulEl.append(highestPriceLiEl);
+              let lowestPriceLiEl = $(
+                "<li>Lowest Price: " + data.results[0].l + "</li>"
+                );
+                ulEl.append(lowestPriceLiEl);
+                let numOfTransactionsLiEl = $(
+                  "<li>Number of transactions: " + data.results[0].n + "</li>"
+                  );
+                  ulEl.append(numOfTransactionsLiEl);
+                  let tradingVolumeLiEl = $(
+                    "<li>Trading Volume: " + data.results[0].v + "</li>"
+                    );
+                    ulEl.append(tradingVolumeLiEl);
+                    let volumeWeightedAvgPrice = $(
+                      "<li>Volume Weighted Average Price: " + data.results[0].vw + "</li>"
+                      );
+                      // $("main").css({
+                        //   "display": "grid",
         //   "grid-template-columns": "repeat(auto-fill, minmax(400px, 1fr))", // This will create as many columns as can fit without any of them having a width less than 250px
         //   "gap": "20px",
         // });
-
+        
         ulEl.append(volumeWeightedAvgPrice);
-
+        
         headerEl.css({
           color: "white",
         });
@@ -230,15 +239,21 @@ function stockPreviousClose(ticker) {
           "flex-direction": "column",
           "width": "fit-content",
           "text-align": "center",
-          // "gap": "5px",
+          "position": "relative",
           "border-radius": "10px",
           "padding": "15px",
           "margin": "45px",
         });
         sectionEl.append(ulEl);
-        let divEl = $("<div>");
-        divEl.append(sectionEl)
+        divEl.append(sectionEl);
         $("main").append(divEl);
+        //makes the close button erase the div that contains it, and removes it from the displayed tickers array
+        closeBtn.attr("id",tickerSymbol + "-btn")
+        $("#" + tickerSymbol + "-btn").on("click",function (){
+          $("#" + tickerSymbol).remove()
+         let index = displayedTickers.indexOf(tickerSymbol)
+         displayedTickers.splice(index, 1)
+        })
       }
     });
-}
+  }
