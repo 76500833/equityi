@@ -121,13 +121,23 @@ if (localStorage.getItem("active-tickers")) {
         event.preventDefault()
         $("#ticker-input-submit").trigger('click')
       }
-    })
+    }
+    )
+    let displayedTickers = [];
 
     $("#ticker-input-submit").on("click", function (event) {
       event.preventDefault();
       let searchedTicker = $("#ticker-input").val().toUpperCase();
       $("#ticker-input").val("");
+ 
+      if (displayedTickers.includes(searchedTicker)){
+        //TO DO: Change to modal
+        alert("You already have this ticker displayed")
+        return
+      }
+
       if (activeTickers.tickerList.includes(searchedTicker)) {
+        displayedTickers.push(searchedTicker)
         stockPreviousClose(searchedTicker);
       } else {
         //To do: CHange to modal
