@@ -56,7 +56,6 @@ if (localStorage.getItem("active-tickers")) {
     //checks if the local data is older than 24 hours
     populateActiveTickers();
   }
-  //?isnt this else block redundant because we only want to update every 24hrs?
 } else {
   populateActiveTickers();
 }
@@ -146,7 +145,7 @@ function stockPreviousClose(ticker) {
     .then(function (response) {
       if (response.status !== 200) {
         //To do: display modal clarifying the error
-        throw new Error("response status is not 200");
+        return new Promise();
       }
       return response.json();
     })
