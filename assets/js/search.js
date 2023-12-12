@@ -1,7 +1,6 @@
 let apiKey = "okPpp2JvzuT94Kf1DJKeopxgFtX6BKXH";
 let activeTickers = {};
 
-// To do: privitize this tis whole block
 let tickerObjects = [];
 //populates the activeTickers object with a timestamp, and an array of all active tickers
 function populateActiveTickers() {
@@ -116,7 +115,14 @@ if (localStorage.getItem("active-tickers")) {
     $("main").before(sectionEl);
   
     sectionEl.append(formEl);
-    
+
+    $("#ticker-input").on("keydown", function (event) {
+      if (event.originalEvent.key == "Enter"){
+        event.preventDefault()
+        $("#ticker-input-submit").trigger('click')
+      }
+    })
+
     $("#ticker-input-submit").on("click", function (event) {
       event.preventDefault();
       let searchedTicker = $("#ticker-input").val().toUpperCase();
@@ -131,7 +137,6 @@ if (localStorage.getItem("active-tickers")) {
   })()
   
   //run stockPreviousClose(favorites array) to display onto favorites page
-
   function stockPreviousClose(ticker) {
     let apiUrl =
       "https://api.polygon.io/v2/aggs/ticker/" +
