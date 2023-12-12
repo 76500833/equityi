@@ -63,8 +63,8 @@ if (localStorage.getItem("active-tickers")) {
 
 
 //Displays the stock lookup functionality, and adds event listener to the submit to perform the utility.
-$("#stock-look-up-tool").on("click", function () {
-    $("main").empty();
+(function () {
+  
     let formEl = $(
       "<form id = 'stock-look-up-form' class = 'uk-margin'></form>"
     ).css({
@@ -116,8 +116,8 @@ $("#stock-look-up-tool").on("click", function () {
     $("main").before(sectionEl);
   
     sectionEl.append(formEl);
-  
-    return $("#ticker-input-submit").on("click", function (event) {
+    
+    $("#ticker-input-submit").on("click", function (event) {
       event.preventDefault();
       let searchedTicker = $("#ticker-input").val().toUpperCase();
       $("#ticker-input").val("");
@@ -128,13 +128,10 @@ $("#stock-look-up-tool").on("click", function () {
         alert("This ticker doesn't exist/isn't currently active");
       }
     });
-  });
-  
-  //unused
-  $("#equityI").on("click", function () {
-  });
+  })()
   
   //run stockPreviousClose(favorites array) to display onto favorites page
+
   function stockPreviousClose(ticker) {
     let apiUrl =
       "https://api.polygon.io/v2/aggs/ticker/" +
