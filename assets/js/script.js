@@ -1,5 +1,5 @@
 
-//$().on("click",StockPreviousClose($().val))
+// //$().on("click",StockPreviousClose($().val))
 let apiKey = "";
 
 function stockPreviousClose(ticker){
@@ -40,34 +40,123 @@ function stockPreviousClose(ticker){
         })
     }
 
-
-// fetch request for Polygon API which will get top 5 stocks and bottom 5 stocks
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// fetch request for Polygon API which will get top 5 stocks
 // depending on user input as well as the event listeners
-var ulList = document.querySelector("#ulList")
-var fetchButton = document.getElementById("fetch-button");
 
-//getApi function is called when the fetchButton is clicked
+var fetchButtonTop = document.getElementById("fetch-button-top");
 
-function getApi() {
+//getApi function is called when the fetchButtonTop is clicked
+
+function getApiTop() {
+    var sectionContainer= document.querySelector(".container");
+
   // Inserting Polygon API URL with key into a variable
   var requestUrl = 'https://api.polygon.io/v2/snapshot/locale/us/markets/stocks/gainers?apiKey=okPpp2JvzuT94Kf1DJKeopxgFtX6BKXH'
 
   fetch(requestUrl)
     .then(function (response) {
+        if(response.status === 404){
+            console.log("Error 404") // could also display error message to the web
+        }
       return response.json();
     })
     .then(function (data) {
+        var olList = document.createElement("ol");
+
       // looping over the data object and creating list elements
       for (var i=0; i<5; i++){
-        var top5 = data.tickers[i].ticker;
+            
         var listItem = document.createElement("li")
-      //   //Set the text of the list element to the JSON response's ticker property
+
+      //Set the text of the list element to the JSON response's ticker property
         listItem.textContent = data.tickers[i].ticker;
+        olList.append(listItem);
+        sectionContainer.append(olList);
+
+        //creating ul elements that will be nested inside each ordered list element
+        var ulList = document.createElement("ul");
+        listItem.append(ulList);
+
+        //creating nested li elements
+        var changePercentageEl = document.createElement("li");
+        var openingPriceEl = document.createElement("li");
+        var highPriceEl = document.createElement("li");
+        var closingPriceEl = document.createElement("li")
+        
+        //Adding text content to nexted li's
+        changePercentageEl.textContent = "Todays change percentage: " + data.tickers[i].todaysChangePerc;
+        openingPriceEl.textContent = "Opening price: " + data.tickers[i].day.o;
+        highPriceEl.textContent = "Highest Price: " + data.tickers[i].day.h;
+        closingPriceEl.textContent = "Closing price: " + data.tickers[i].day.c;
+        ulList.append(changePercentageEl);
+        ulList.append(openingPriceEl);
+        ulList.append(highPriceEl);
+        ulList.append(closingPriceEl);
       }
-      //   //Append the li element to the id associated with the ul element.
-        ulList.append(listItem);
-      // }
+     
     });
 }
 
-fetchButton.addEventListener('click', getApi);
+fetchButtonTop.addEventListener('click', getApiTop);
+
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//fetch request for polygon to pull the bottom 5
+//stocks based on user input and/or event listeners 
+
+var fetchButtonBottom = document.getElementById("fetch-button-bottom")
+
+function getApiBottom() {
+    var sectionContainer= document.querySelector(".container");
+
+  // Inserting Polygon API URL with key into a variable
+  var requestUrl = "https://api.polygon.io/v2/snapshot/locale/us/markets/stocks/losers?apiKey=okPpp2JvzuT94Kf1DJKeopxgFtX6BKXH"
+
+  fetch(requestUrl)
+    .then(function (response) {
+        if(response.status === 404){
+            console.log("Error 404") // could also display error message to the web
+        }
+      return response.json();
+    })
+    .then(function (data) {
+        // var sectionElement = document.createElement("div");
+        var olList = document.createElement("ol");
+        // sectionElement.append(olList);
+
+      // looping over the data object and creating list elements
+      for (var i=0; i<5; i++){
+            
+        var listItem = document.createElement("li")
+
+      //Set the text of the list element to the JSON response's ticker property
+        listItem.textContent = data.tickers[i].ticker;
+        olList.append(listItem);
+        sectionContainer.append(olList);
+
+        //creating ul elements that will be nested inside each ordered list element
+        var ulList = document.createElement("ul");
+        listItem.append(ulList);
+
+        //creating nested li elements
+        var changePercentageEl = document.createElement("li");
+        var openingPriceEl = document.createElement("li");
+        var highPriceEl = document.createElement("li");
+        var closingPriceEl = document.createElement("li")
+        
+        //Adding text content to nexted li's
+        changePercentageEl.textContent = "Todays change percentage: " + data.tickers[i].todaysChangePerc;
+        openingPriceEl.textContent = "Opening price: " + data.tickers[i].day.o;
+        highPriceEl.textContent = "Highest Price: " + data.tickers[i].day.h;
+        closingPriceEl.textContent = "Closing price: " + data.tickers[i].day.c;
+        ulList.append(changePercentageEl);
+        ulList.append(openingPriceEl);
+        ulList.append(highPriceEl);
+        ulList.append(closingPriceEl);
+      }
+     
+    });
+}
+
+fetchButtonBottom.addEventListener('click', getApiBottom);
