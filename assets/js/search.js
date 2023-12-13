@@ -203,8 +203,11 @@ function stockPreviousClose(ticker) {
           //! appending news button
           sectionEl.append(newsModalButton);
           let modal = $("<div>")
-  
-          .attr("id", "newsModal").css("background-color", "white")
+          .css({
+            "width": "100%",
+            "background": "transperant"
+          })
+          .attr("id", "newsModal")
           .attr("uk-modal", "uk-modal-dialog uk-margin-auto-vertical")
           // .css({
           //   "display": "flex",
@@ -214,6 +217,7 @@ function stockPreviousClose(ticker) {
             $("<div>")
               .attr("class", "uk-modal-dialog uk-modal-body")
               
+              
               .append(
                 $("<h2>").attr("class", "uk-modal-title").text("Modal Title"),
                 $("<p>").text("Modal content..."),
@@ -222,15 +226,13 @@ function stockPreviousClose(ticker) {
                     .attr("class", "uk-button uk-button-default uk-modal-close")
                     .attr("type", "button")
                     .text("Cancel"),
-                  $("<button>")
-                    .attr("class", "uk-button uk-button-primary")
-                    .attr("type", "button")
-                    .text("Save")
+   
                 )
               )
           );
 
-$("body").append(modal);
+$("main").append(modal);
+
           let ulEl = $("<ul>").css({
             "list-style": "none",
             padding: "10px",
