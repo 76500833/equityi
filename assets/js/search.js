@@ -194,27 +194,26 @@ function stockPreviousClose(ticker) {
           .attr("uk-toggle" ,"target: #newsModal")
           .css({ 
             "height": "fit-content",
-            "width": "fit-content",
+            //worked perfectly thanks kev
+            "width": "100%",
             "margin": "auto",
             "color": "white"
           })
           .text("news articles");
-          let buttonWrapper = $("<div>")
-           .attr("class", "uk-flex uk-flex-center")
-           .append(newsModalButton);
-    sectionEl.append(newsModalButton);
-
-        
           //! appending news button
           sectionEl.append(newsModalButton);
           let modal = $("<div>")
   
-          .attr("id", "newsModal")
-          .attr("uk-modal", "")
-          // .attr("class", "uk-flex uk-flex-center uk-flex-middle uk-position-center uk-margin-auto-vertical")
+          .attr("id", "newsModal").css("background-color", "white")
+          .attr("uk-modal", "uk-modal-dialog uk-margin-auto-vertical")
+          // .css({
+          //   "display": "flex",
+          //   "justify-content": "center"    
+          //     })    // .attr("class", "uk-flex uk-flex-center uk-flex-middle uk-position-center uk-margin-auto-vertical")
           .append(
             $("<div>")
               .attr("class", "uk-modal-dialog uk-modal-body")
+              
               .append(
                 $("<h2>").attr("class", "uk-modal-title").text("Modal Title"),
                 $("<p>").text("Modal content..."),
