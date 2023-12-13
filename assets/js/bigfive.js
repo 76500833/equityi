@@ -36,7 +36,7 @@ function getApi() {
           var card = $("<div>").css({
             "display": "flex",
             "color": "white",
-            "background-color": "#080097",
+            "background-color": "rgb(8, 0, 151)",
             //row or column review w team
             "flex-direction": "column",
             "width": "fit-content",

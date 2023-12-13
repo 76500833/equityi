@@ -76,7 +76,7 @@ let displayedTickers = [];
     "margin-right": "20%",
     "padding": "20px",
     "border-radius": "10px",
-    "background-color": "rgb(4, 0, 81",
+    "background-color": "rgb(4, 0, 156)",
     "align-items": "center",
     "color": "white",
     "width": "fit-content"
@@ -111,7 +111,9 @@ let displayedTickers = [];
   let sectionEl = $("<section>").attr("id", "sectionElForCard");
   sectionEl.css({
     "display": "flex",
-    "justify-content": "center"
+    "justify-content": "center",
+
+    
   })
   $("main").before(sectionEl);
 
@@ -171,6 +173,9 @@ function stockPreviousClose(ticker) {
           .css({
             "display": "flex",
             "justify-content": "center",
+            "background-color": "rgb(4, 0, 81)"
+            
+            
           })
         let headerEl = $("<h3>" + tickerSymbol + "</h3>"); //creates a header element with text content of the ticker Title
         sectionEl.append(headerEl);
@@ -226,7 +231,10 @@ function stockPreviousClose(ticker) {
                     .attr("class", "uk-button uk-button-default uk-modal-close")
                     .attr("type", "button")
                     .text("Cancel"),
-   
+                  $("<button>")
+                    .attr("class", "uk-button uk-button-primary")
+                    .attr("type", "button")
+                    .text("Save")
                 )
               )
           );
