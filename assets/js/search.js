@@ -76,7 +76,7 @@ let displayedTickers = [];
     "margin-right": "20%",
     "padding": "20px",
     "border-radius": "10px",
-    "background-color": "#090580",
+    "background-color": "rgb(4, 0, 81",
     "align-items": "center",
     "color": "white",
     "width": "fit-content"
@@ -167,30 +167,71 @@ function stockPreviousClose(ticker) {
       if (data) {
         let tickerSymbol = data.results[0].T;
         let divEl = $("<div>").attr("id", tickerSymbol);
-        let sectionEl = $("<section>").attr("id", "card");
+        let sectionEl = $("<section>").attr("id", "card")
+          .css({
+            "display": "flex",
+            "justify-content": "center",
+          })
         let headerEl = $("<h3>" + tickerSymbol + "</h3>"); //creates a header element with text content of the ticker Title
         sectionEl.append(headerEl);
         
         //adding close btn
         let closeBtn = $("<button " + "class = 'uk-position-absolute " +
-          "uk-position-small " +
-          "uk-position-top-right' " +
-          "type='button' uk-close></button>");
+        "uk-position-small " +
+        "uk-position-top-right' " +
+        "type='button' uk-close></button>");
         
-          
-          sectionEl.append(closeBtn)
-          //! adding favorite button
-          let favoriteButton = $("<button>")
-          .attr("class", "favorite-button")
-          .css({
+        
+        sectionEl.append(closeBtn)
+
+
+     
+        //TODO turn into modal
+          let newsModalButton = $("<button>")
+          .attr("class", "uk-button uk-button-default uk-margin-small-right")
+          // .attr("class", "uk-button uk-button-default uk-margin-small-right uk-align-center")
+          .attr("type", "button")
+          .attr("uk-toggle" ,"target: #newsModal")
+          .css({ 
             "height": "fit-content",
             "width": "fit-content",
             "margin": "auto",
+            "color": "white"
           })
-          .text("Favorite");
-          //! appending favorite button
-          sectionEl.append(favoriteButton);
-          
+          .text("news articles");
+          let buttonWrapper = $("<div>")
+           .attr("class", "uk-flex uk-flex-center")
+           .append(newsModalButton);
+    sectionEl.append(newsModalButton);
+
+        
+          //! appending news button
+          sectionEl.append(newsModalButton);
+          let modal = $("<div>")
+  
+          .attr("id", "newsModal")
+          .attr("uk-modal", "")
+          // .attr("class", "uk-flex uk-flex-center uk-flex-middle uk-position-center uk-margin-auto-vertical")
+          .append(
+            $("<div>")
+              .attr("class", "uk-modal-dialog uk-modal-body")
+              .append(
+                $("<h2>").attr("class", "uk-modal-title").text("Modal Title"),
+                $("<p>").text("Modal content..."),
+                $("<p>").attr("class", "uk-text-right").append(
+                  $("<button>")
+                    .attr("class", "uk-button uk-button-default uk-modal-close")
+                    .attr("type", "button")
+                    .text("Cancel"),
+                  $("<button>")
+                    .attr("class", "uk-button uk-button-primary")
+                    .attr("type", "button")
+                    .text("Save")
+                )
+              )
+          );
+
+$("body").append(modal);
           let ulEl = $("<ul>").css({
             "list-style": "none",
             padding: "10px",
