@@ -167,6 +167,7 @@ function stockPreviousClose(ticker) {
     })
     .then(function (data) {
       if (data) {
+        console.log(data)
         let tickerSymbol = data.results[0].T;
         let divEl = $("<div>").attr("id", tickerSymbol);
         let sectionEl = $("<section>").attr("id", "card")
@@ -177,6 +178,8 @@ function stockPreviousClose(ticker) {
             
             
           })
+      
+        // let nameEl = $("<h3>") + nameForCard + "</h3>");
         let headerEl = $("<h3>" + tickerSymbol + "</h3>"); //creates a header element with text content of the ticker Title
         sectionEl.append(headerEl);
         
@@ -205,7 +208,7 @@ function stockPreviousClose(ticker) {
             "margin": "auto",
             "color": "white"
           })
-          .text("Learn More");
+          .text("news articles");
           //! appending news button
           sectionEl.append(newsModalButton);
           let modal = $("<div>")
@@ -325,8 +328,7 @@ $("main").append(modal);
               return response.json();
           })
           .then(function (data) {
-              console.log(data);
-              console.log(ticker);
+          
               $(".uk-modal-title").text(data.Name)
               $(".description").text(data.Description)
               
