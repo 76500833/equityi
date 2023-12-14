@@ -1,71 +1,124 @@
 let apiKey = "okPpp2JvzuT94Kf1DJKeopxgFtX6BKXH";
 // fetch request for Polygon API which will get top 5 stocks and bottom 5 stocks
 // depending on user input as well as the event listeners
+var ulList = document.querySelector("#ulList");
 
-//ulList is the parent element of the cards
-var ulList = $("#ulList").css({
-  "display": "grid",
-  "grid-template-columns": "repeat(auto-fill, minmax(250px, 1fr))", // Adjust as needed
-  "grid-gap": "10px", // Adjust as needed
-  "padding": "10px", // Adjust as needed
-  "border-radius": "10",
-  "color": "white",
-  "justify-items": "center",
-  "align-items": "center",
-  
-});
+// var fetchButtonTop = document.getElementById("fetch-button-top");
 
-var fetchButton = document.getElementById("fetch-button");
-$(fetchButton).text("See Five Bigest Movers")
+//getApi function is called when the fetchButtonTop is clicked
 
-//getApi function is called when the fetchButton is clicked
+function getApiTop() {
+    var sectionContainer = document.querySelector("#top-container");
 
-function getApi() {
-  console.log("hi")
-  // Inserting Polygon API URL with key into a variable
-  var requestUrl =
-    "https://api.polygon.io/v2/snapshot/locale/us/markets/stocks/gainers?apiKey=okPpp2JvzuT94Kf1DJKeopxgFtX6BKXH";
+    // Inserting Polygon API URL with key into a variable
+    var requestUrl =
+        "https://api.polygon.io/v2/snapshot/locale/us/markets/stocks/gainers?apiKey=okPpp2JvzuT94Kf1DJKeopxgFtX6BKXH";
 
-  fetch(requestUrl)
-    .then(function (response) {
-      return response.json();
-    })
-      .then(function (data) {
-        for (var i = 0; i < 5; i++) {
-          // Create a new div for the card
-          var card = $("<div>").css({
-            "display": "flex",
-            "color": "white",
-            "background-color": "rgb(8, 0, 151)",
-            //row or column review w team
-            "flex-direction": "column",
-            "width": "fit-content",
-            "text-align": "center",
-            "position": "relative",
-            "border-radius": "10px",
-            "padding": "15px",
-          
-            "gap": "2px",
-            "margin-bottom": "50px"
-          });
-    
-          // Create the list item and paragraph
-          var h2 = $("<h2>").text(data.tickers[i].ticker).css({
-            "color": "white"
-          })
-          var todaysChangeEl = $("<p>").text("Todays Change percentage: " + data.tickers[i].todaysChangePerc.toFixed(1)).css({
-            "margin": "5px"
-          })
-    
-          // Append the list item and paragraph to the card
-          card.append(h2, todaysChangeEl);
-    
-          // Append the card to the list
-      
-          ulList.append(card);
-        }
-      });
-    }
+    fetch(requestUrl)
+        .then(function (response) {
+            if (response.status === 404) {
+                console.log("Error 404") // could also display error message to the web
+            }
+            return response.json();
+        })
+        .then(function (data) {
+            var olList = document.createElement("ol");
+            var header = document.createElement("h2");
+            header.textContent = "Top 5 Movers";
+            sectionContainer.append(header);
+            // looping over the data object and creating list elements
+            for (var i = 0; i < 5; i++) {
+                // var top5 = data.tickers[i].ticker;
+                var listItem = document.createElement("li");
+                //   //Set the text of the list element to the JSON response's ticker property
+                listItem.textContent = data.tickers[i].ticker;
+                olList.append(listItem);
+                sectionContainer.append(olList);
+
+                //creating ul elements that will be nested inside each ordered list element
+                var ulList = document.createElement("ul");
+                listItem.append(ulList);
+
+                //creating nested li elements
+                var changePercentageEl = document.createElement("li");
+                var openingPriceEl = document.createElement("li");
+                var highPriceEl = document.createElement("li");
+                var closingPriceEl = document.createElement("li")
+
+                //Adding text content to nexted li's
+                changePercentageEl.textContent = "Todays change percentage: " + data.tickers[i].todaysChangePerc + "%";
+                openingPriceEl.textContent = "Opening price: $" + data.tickers[i].day.o;
+                highPriceEl.textContent = "Highest Price: $" + data.tickers[i].day.h;
+                closingPriceEl.textContent = "Closing price: $" + data.tickers[i].day.c;
+                ulList.append(changePercentageEl);
+                ulList.append(openingPriceEl);
+                ulList.append(highPriceEl);
+                ulList.append(closingPriceEl);
+            }
+
+        });
+}
+// fetchButtonTop.addEventListener('click', getApiTop);
 
 
-fetchButton.addEventListener('click', getApi);
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//fetch request for polygon to pull the bottom 5
+//stocks based on user input and/or event listeners 
+
+// var fetchButtonBottom = document.getElementById("fetch-button-bottom")
+
+function getApiBottom() {
+    var sectionContainer = document.querySelector("#bottom-container");
+    var header = document.createElement("h2");
+    header.textContent = "Bottom 5 Movers";
+    sectionContainer.append(header);
+
+    // Inserting Polygon API URL with key into a variable
+    var requestUrl = "https://api.polygon.io/v2/snapshot/locale/us/markets/stocks/losers?apiKey=okPpp2JvzuT94Kf1DJKeopxgFtX6BKXH"
+
+    fetch(requestUrl)
+        .then(function (response) {
+            if (response.status === 404) {
+                console.log("Error 404") // could also display error message to the web
+            }
+            return response.json();
+        })
+        .then(function (data) {
+            // var sectionElement = document.createElement("div");
+            var olList = document.createElement("ol");
+            // sectionElement.append(olList);
+
+            // looping over the data object and creating list elements
+            for (var i = 0; i < 5; i++) {
+
+                var listItem = document.createElement("li")
+
+                //Set the text of the list element to the JSON response's ticker property
+                listItem.textContent = data.tickers[i].ticker;
+                olList.append(listItem);
+                sectionContainer.append(olList);
+
+                //creating ul elements that will be nested inside each ordered list element
+                var ulList = document.createElement("ul");
+                listItem.append(ulList);
+
+                //creating nested li elements
+                var changePercentageEl = document.createElement("li");
+                var openingPriceEl = document.createElement("li");
+                var highPriceEl = document.createElement("li");
+                var closingPriceEl = document.createElement("li")
+
+                //Adding text content to nested li's
+                changePercentageEl.textContent = "Todays change percentage: " + data.tickers[i].todaysChangePerc + "%";
+                openingPriceEl.textContent = "Opening price: $" + data.tickers[i].day.o;
+                highPriceEl.textContent = "Highest Price: $" + data.tickers[i].day.h;
+                closingPriceEl.textContent = "Closing price: $" + data.tickers[i].day.c;
+                ulList.append(changePercentageEl);
+                ulList.append(openingPriceEl);
+                ulList.append(highPriceEl);
+                ulList.append(closingPriceEl);
+            }
+
+        });
+}
+// fetchButtonBottom.addEventListener('click', getApiBottom);

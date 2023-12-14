@@ -18,9 +18,10 @@
     <link href="https://fonts.googleapis.com/css2?family=Lumanosimo&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="./assets/css/bigfive.css">
 </head>
 
-<body>
+<body onload="getApiBottom(), getApiTop()">
     <!--navbar-->
     <nav id="navbar" uk-sticky="sel-target: .uk-navbar-container; cls-active: uk-navbar-sticky; end: + *; offset: 80;">
         <div class="uk-navbar-container">
@@ -56,6 +57,13 @@
 <!--TODO put equity i in navbar-->
 <!--TODO put find out more modal in image-->
 <main>
+    <div id="mainContainer">
+        <div id="top-container">
+        </div>
+        
+        <div id="bottom-container">
+        </div>
+    </div>
   <!--TODO put some stuff here that goes away when you click equity I-->
   <button id="fetch-button"></button>
   <ul id="ulList"></ul>
