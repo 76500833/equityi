@@ -177,6 +177,8 @@ function stockPreviousClose(ticker) {
             
             
           })
+      
+        // let nameEl = $("<h3>") + nameForCard + "</h3>");
         let headerEl = $("<h3>" + tickerSymbol + "</h3>"); //creates a header element with text content of the ticker Title
         sectionEl.append(headerEl);
         
@@ -325,8 +327,7 @@ $("main").append(modal);
               return response.json();
           })
           .then(function (data) {
-              console.log(data);
-              console.log(ticker);
+          
               $(".uk-modal-title").text(data.Name)
               $(".description").text(data.Description)
               
