@@ -1,0 +1,45 @@
+*{
+    
+}
+
+body,
+html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+
+#mainContainer {
+    display: flex;
+    justify-content: space-evenly;
+    width: 100%;
+    overflow: none;
+}
+
+#top-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: left;
+    margin-top: 2rem;
+    padding: 1rem;
+    flex-direction: column;
+    background-color: rgb(22, 22, 134);
+    color: white;
+}
+
+#bottom-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: left;
+    margin-top: 2rem;
+    padding: 1rem;
+    flex-direction: column;
+    background-color: rgb(22, 22, 134);
+    color: white;
+}
+
+h2{
+    color: white;
+}
