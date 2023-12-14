@@ -205,7 +205,7 @@ function stockPreviousClose(ticker) {
             "margin": "auto",
             "color": "white"
           })
-          .text("news articles");
+          .text("Learn More");
           //! appending news button
           sectionEl.append(newsModalButton);
           let modal = $("<div>")
