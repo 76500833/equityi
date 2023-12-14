@@ -167,7 +167,6 @@ function stockPreviousClose(ticker) {
     })
     .then(function (data) {
       if (data) {
-        console.log(data)
         let tickerSymbol = data.results[0].T;
         let divEl = $("<div>").attr("id", tickerSymbol);
         let sectionEl = $("<section>").attr("id", "card")
