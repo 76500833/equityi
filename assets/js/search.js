@@ -96,7 +96,7 @@ let displayedTickers = [];
       "outline": "none",
       "border": "none",
       "resize": "none",
-      "border-radius": "20px",
+      "border-radius": "5px",
       "text-align": "center",
       "height": "20px", // Set a specific height
       "line-height": "20px", // Set line-height equal to the height
@@ -194,6 +194,7 @@ function stockPreviousClose(ticker) {
         //TODO turn into modal
           let newsModalButton = $("<button>")
           .attr("class", "uk-button uk-button-default uk-margin-small-right")
+          .attr("id", "newsModalButton")
           // .attr("class", "uk-button uk-button-default uk-margin-small-right uk-align-center")
           .attr("type", "button")
           .attr("uk-toggle" ,"target: #newsModal")
@@ -224,8 +225,8 @@ function stockPreviousClose(ticker) {
               
               
               .append(
-                $("<h2>").attr("class", "uk-modal-title").text("Modal Title"),
-                $("<p>").text("Modal content..."),
+                $("<h2>").attr("class", "uk-modal-title"),
+                $("<p>").text("Modal content...").attr("class", "description"),
                 $("<p>").attr("class", "uk-text-right").append(
                   $("<button>")
                     .attr("class", "uk-button uk-button-default uk-modal-close")
@@ -307,3 +308,31 @@ $("main").append(modal);
       }
     });
   }
+
+
+    $(document).on('click', "#card #newsModalButton", (function() {
+
+      //grabs the ticker of the card so it can be plugged into the endpoint
+      let ticker = $(this).siblings("h3").text();
+
+      let alphaVantageKey = "PUZOI2F17H6KBPQC"
+      let apiUrl = `https://www.alphavantage.co/query?function=OVERVIEW&symbol=${ticker}&apikey= +${alphaVantageKey}`;
+      fetch(apiUrl)
+          .then(function (response) {
+              if (response.status !== 200) {
+                  throw new Error("Not 200 response");
+              }
+              return response.json();
+          })
+          .then(function (data) {
+              console.log(data);
+              console.log(ticker);
+              $(".uk-modal-title").text(data.Name)
+              $(".description").text(data.Description)
+              
+          })
+          .catch(function (error) {
+              console.log('Error:', error);
+          });
+  }));
+
