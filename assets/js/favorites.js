@@ -157,7 +157,7 @@ function stockPreviousClose(ticker) {
           sectionEl.append(ulEl);
           divEl.append(sectionEl);
           $("main").append(divEl);
-  center
+
           //both Fav buttons are created
           let favTrueBtn = $("<i class='fas fa-star '></i>");
           favTrueBtn.attr = ("id", tickerSymbol + "-fav-btn");
