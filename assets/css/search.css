@@ -81,3 +81,20 @@ color: white;
 
 }
 
+/*style search button */
+#ticker-input-submit {
+    color: white;
+    background-color: rgb(8, 0, 151);
+    outline: none;
+    border: white 1px solid;
+    border-radius: 5px;
+    padding: 5px;
+}
+
+/* #sectionElForCard {
+    text-align: left;
+} */
+
+#tickerForCard {
+    text-align: center;
+}
