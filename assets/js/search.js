@@ -39,7 +39,7 @@ function parseNextPage(data) {
       fetch(nextPage + "&apiKey=" + apiKey)
         .then(function (response) {
           if (response.status !== 200) {
-            //To do: display modal clarifying the error
+            UIkit.modal.alert('There was an error getting the information, try again later')
             return new Promise();
           }
           return response.json();
@@ -137,8 +137,7 @@ let displayedTickers = [];
     $("#ticker-input").val("");
 
     if (displayedTickers.includes(searchedTicker)) {
-      //TO DO: Change to modal
-      alert("You already have this ticker displayed");
+      UIkit.modal.alert("You already have this ticker displayed");
       return;
     }
 
@@ -146,8 +145,7 @@ let displayedTickers = [];
       displayedTickers.push(searchedTicker);
       stockPreviousClose(searchedTicker);
     } else {
-      //To do: CHange to modal
-      alert("This ticker doesn't exist/isn't currently active");
+      UIkit.modal.alert("This ticker doesn't exist/isn't currently active");
     }
   });
 })();
@@ -164,7 +162,7 @@ function stockPreviousClose(ticker) {
   fetch(apiUrl)
     .then(function (response) {
       if (response.status !== 200) {
-        //To do: display modal clarifying the error
+        UIkit.modal.alert('There was an error getting the information, try again later')
         return new Promise();
       }
       return response.json();

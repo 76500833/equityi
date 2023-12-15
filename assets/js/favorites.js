@@ -9,7 +9,7 @@ let savedFavorites = [];
             stockPreviousClose(savedFavorites[i])
         }
     } else {
-        //display modal saying you currently dont have any favorites saved
+        UIkit.modal.alert("You don't currently have any favorites saved")
     }
 })()
 
@@ -25,7 +25,7 @@ function stockPreviousClose(ticker) {
     fetch(apiUrl)
       .then(function (response) {
         if (response.status !== 200) {
-          //To do: display modal clarifying the error
+            UIkit.modal.alert('There was an error getting the information, try again later')
           return new Promise();
         }
         return response.json();
