@@ -53,7 +53,6 @@ function stockPreviousClose(ticker) {
   
           sectionEl.append(closeBtn)
   
-          //TODO turn into modal
           let newsModalButton = $("<button>")
             .attr("class", "uk-button uk-button-default uk-margin-small-right")
             .attr("id", "newsModalButton")
@@ -158,7 +157,7 @@ function stockPreviousClose(ticker) {
           sectionEl.append(ulEl);
           divEl.append(sectionEl);
           $("main").append(divEl);
-  
+  center
           //both Fav buttons are created
           let favTrueBtn = $("<i class='fas fa-star '></i>");
           favTrueBtn.attr = ("id", tickerSymbol + "-fav-btn");

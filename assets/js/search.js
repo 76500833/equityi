@@ -21,9 +21,9 @@ function populateActiveTickers() {
 let savedFavorites = [];
 (function () {
   if (localStorage.getItem("saved-favorites")) {
-    savedFavorites = JSON.parse(localStorage.getItem("saved-favorites"))
+    savedFavorites = JSON.parse(localStorage.getItem("saved-favorites"));
   }
-})()
+})();
 /**
  * Parses the next page of data and updates the tickerObjects array.
  * If there is a next page, it fetches the data using the provided apiKey and recursively calls itself.
@@ -90,9 +90,6 @@ let displayedTickers = [];
   //styling the header for the form
   formEl.append($("<label for='ticker-input'>Search by Ticker</label>")).css({
     "font-size": "20px",
-    //TODO choose font
-
-    //TODO SEARCH WILL BE TURNED INTO A FUNCTION.
   });
   //styling the
   formEl.append(
@@ -174,12 +171,11 @@ function stockPreviousClose(ticker) {
         let tickerSymbol = data.results[0].T;
         let divEl = $("<div>").attr("id", tickerSymbol);
 
-        let sectionEl = $("<section>").attr("id", "card")
-          .css({
-            "display": "flex",
-            "justify-content": "center",
-            "background-color": "rgb(4, 0, 81)"
-          })
+        let sectionEl = $("<section>").attr("id", "card").css({
+          display: "flex",
+          "justify-content": "center",
+          "background-color": "rgb(4, 0, 81)",
+        });
 
         let headerEl = $("<h3>" + tickerSymbol + "</h3>"); //creates a header element with text content of the ticker Title
         sectionEl.append(headerEl);
@@ -195,8 +191,6 @@ function stockPreviousClose(ticker) {
         );
 
         sectionEl.append(closeBtn);
-
-        //TODO turn into modal
         let newsModalButton = $("<button>")
           .attr(
             "class",
@@ -208,8 +202,7 @@ function stockPreviousClose(ticker) {
           .attr("type", "button")
           .attr("uk-toggle", "target: #newsModal")
           .css({
-
-            "height": "fit-content",
+            height: "fit-content",
             //worked perfectly thanks kev
             width: "100%",
             margin: "auto",
@@ -228,7 +221,7 @@ function stockPreviousClose(ticker) {
           .attr("id", "newsModal")
           .attr("uk-modal", "uk-modal-dialog uk-margin-auto-vertical")
 
-           .append(
+          .append(
             $("<div>")
               .attr("class", "uk-modal-dialog uk-modal-body")
               .append(
@@ -288,7 +281,6 @@ function stockPreviousClose(ticker) {
         );
         ulEl.append(tradingVolumeLiEl);
 
-
         let volumeWeightedAvgPrice = $(
           "<li>Volume Weighted Average Price: " + data.results[0].vw + "</li>"
         );
@@ -297,7 +289,7 @@ function stockPreviousClose(ticker) {
         headerEl.css({
           color: "white",
         });
-      
+
         sectionEl.css({
           display: "flex",
           color: "white",
@@ -319,35 +311,49 @@ function stockPreviousClose(ticker) {
         //both Fav buttons are created
         let favTrueBtn = $("<i class='fas fa-star '></i>");
         favTrueBtn.attr = ("id", tickerSymbol + "-fav-btn");
-        favTrueBtn.addClass(["uk-position-absolute", "uk-position-small", "uk-position-top-left"])
+        favTrueBtn.addClass([
+          "uk-position-absolute",
+          "uk-position-small",
+          "uk-position-top-left",
+        ]);
 
         let favFalseBtn = $("<i class='far fa-star'></i>");
         favFalseBtn.attr = ("id", tickerSymbol + "-fav-btn");
-        favFalseBtn.addClass(["uk-position-absolute", "uk-position-small", "uk-position-top-left"])
+        favFalseBtn.addClass([
+          "uk-position-absolute",
+          "uk-position-small",
+          "uk-position-top-left",
+        ]);
 
         //this click handlers swaps the buttons, then created a new event
         //handler for the swapped element that runs the same handler
         function favoriteClickHandler(event) {
           if ($(event.target).hasClass("fas")) {
-            $(event.target).replaceWith(favFalseBtn)
-            favFalseBtn.on("click", favoriteClickHandler)
-            let index = savedFavorites.indexOf(tickerSymbol)
-            savedFavorites.splice(index, 1)
-            localStorage.setItem("saved-favorites", JSON.stringify(savedFavorites))
+            $(event.target).replaceWith(favFalseBtn);
+            favFalseBtn.on("click", favoriteClickHandler);
+            let index = savedFavorites.indexOf(tickerSymbol);
+            savedFavorites.splice(index, 1);
+            localStorage.setItem(
+              "saved-favorites",
+              JSON.stringify(savedFavorites)
+            );
           } else {
-            $(event.target).replaceWith(favTrueBtn)
-            favTrueBtn.on("click", favoriteClickHandler)
-            savedFavorites.push(tickerSymbol)
-            localStorage.setItem("saved-favorites", JSON.stringify(savedFavorites))
+            $(event.target).replaceWith(favTrueBtn);
+            favTrueBtn.on("click", favoriteClickHandler);
+            savedFavorites.push(tickerSymbol);
+            localStorage.setItem(
+              "saved-favorites",
+              JSON.stringify(savedFavorites)
+            );
           }
         }
         //checks Saved favorites array to see if the ticker is saved a favorite
         if (savedFavorites.includes(tickerSymbol)) {
-          sectionEl.append(favTrueBtn)
-          favTrueBtn.on("click", favoriteClickHandler)
+          sectionEl.append(favTrueBtn);
+          favTrueBtn.on("click", favoriteClickHandler);
         } else {
           sectionEl.append(favFalseBtn);
-          favFalseBtn.on("click", favoriteClickHandler)
+          favFalseBtn.on("click", favoriteClickHandler);
         }
 
         //makes the close button erase the div that contains it, and removes it from the displayed tickers array
