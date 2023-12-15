@@ -48,3 +48,11 @@ html {
 h2{
     color: white;
 }
+
+#top-container {
+    border-radius: 20px;
+}
+
+#bottom-container {
+    border-radius: 20px;
+}

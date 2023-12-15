@@ -1,83 +1,90 @@
 /*the body and html elements will take up the full height of the screen. 
 ensuring that the background image will always cover the entire screen, */
-body, html {
-    margin: 0;
-    padding: 0;
-    height: 100%;
+body,
+html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
 }
 
 /*transperant navbar*/
 #navbar .uk-navbar-container {
-    background-color: rgb(8, 0, 151);
+  background-color: rgb(8, 0, 151);
 }
 #hamburgerContainer {
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
 }
 
 #equityI {
-    color:white;
-    font-size: 30px;
+  color: white;
+  font-size: 30px;
 }
 /*border radius to dropdown menu*/
 .uk-navbar-dropdown {
-    border-radius: 10px;
+  border-radius: 10px;
 }
 .uk-navbar-dropdown {
-    background-color: rgb(4, 0, 81);
-    color: white;
+  background-color: rgb(4, 0, 81);
+  color: white;
 }
 
 #i {
-    display: inline;
-    font-family: 'Lumanosimo', 'Times New Roman', Times, serif;
+  display: inline;
+  font-family: "Lumanosimo", "Times New Roman", Times, serif;
 }
 
 /* Reduce the font-size when the screen width is 600px or less */
 @media (max-width: 773px) {
-    #title {
-        font-size: 50px;
-    }
+  #title {
+    font-size: 50px;
+  }
 }
 @media (max-width: 394px) {
-    #title {
-        font-size: 30px;
-    }
+  #title {
+    font-size: 30px;
+  }
 }
 
 /* Dropdown goes to the rigt, not left */
 .uk-navbar-dropdown {
-    /* left: auto !important; */
-    right: 100px !important;
-    top: 20px !important;
-    line-height: 30px;
+  /* left: auto !important; */
+  right: 100px !important;
+  top: 20px !important;
+  line-height: 30px;
 }
 #stock-look-up-tool:hover {
-    cursor: pointer !important;
+  cursor: pointer !important;
 }
 .uk-open {
-    width:fit-content;
-    font-size: 30px;
+  width: fit-content;
 }
 
 #navAndSearch {
-    display: flex;
-    justify-content: center;
-    color: white;
-    box-shadow:  50px 50px 43px #3c4e78,
-                -50px -50px 43px #8ab2ff;   
+  display: flex;
+  justify-content: center;
+  color: white;
+  box-shadow: 50px 50px 43px #3c4e78, -50px -50px 43px #8ab2ff;
 }
 .uk-navbar-dropdown-nav i {
-    margin-right: 10px;
+  margin-right: 10px;
 }
 
 /*search button in drop bar curser to default*/
 #stock-look-up-tool:hover {
-    cursor: default;
+  cursor: default;
 }
 
 #stock-look-up-form {
-color: white;
-
+  color: white;
 }
 
+/*style search button */
+#ticker-input-submit {
+  color: white;
+  background-color: rgb(8, 0, 151);
+  outline: none;
+  border: white 1px solid;
+  border-radius: 5px;
+  padding: 5px;
+}
