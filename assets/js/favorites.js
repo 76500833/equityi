@@ -34,7 +34,6 @@ function stockPreviousClose(ticker) {
         if (data) {
           let tickerSymbol = data.results[0].T;
           let divEl = $("<div>").attr("id", tickerSymbol);
-  
           let sectionEl = $("<section>").attr("id", "card")
             .css({
               "display": "flex",
@@ -42,73 +41,58 @@ function stockPreviousClose(ticker) {
               "background-color": "rgb(4, 0, 81)"
             })
   
+          // let nameEl = $("<h3>") + nameForCard + "</h3>");
           let headerEl = $("<h3>" + tickerSymbol + "</h3>"); //creates a header element with text content of the ticker Title
           sectionEl.append(headerEl);
   
           //adding close btn
+          let closeBtn = $("<button " + "class = 'uk-position-absolute " +
+            "uk-position-small " +
+            "uk-position-top-right' " +
+            "type='button' uk-close></button>");
   
-          let closeBtn = $(
-            "<button " +
-              "class = 'uk-position-absolute " +
-              "uk-position-small " +
-              "uk-position-top-right' " +
-              "type='button' uk-close></button>"
-          );
-  
-          sectionEl.append(closeBtn);
+          sectionEl.append(closeBtn)
   
           let newsModalButton = $("<button>")
-            .attr(
-              "class",
-              "uk-button uk-button-default uk-margin-small-right uk-border-rounded"
-            )
-  
+            .attr("class", "uk-button uk-button-default uk-margin-small-right")
             .attr("id", "newsModalButton")
             // .attr("class", "uk-button uk-button-default uk-margin-small-right uk-align-center")
             .attr("type", "button")
             .attr("uk-toggle", "target: #newsModal")
             .css({
-  
               "height": "fit-content",
               //worked perfectly thanks kev
-              width: "100%",
-              margin: "auto",
-              color: "white",
+              "width": "100%",
+              "margin": "auto",
+              "color": "white"
             })
-  
-            .text("Learn More");
+            .text("news articles");
   
           //! appending news button
           sectionEl.append(newsModalButton);
           let modal = $("<div>")
             .css({
-              width: "100%",
-              background: "transperant",
+              "width": "100%",
+              "background": "transperant"
             })
             .attr("id", "newsModal")
             .attr("uk-modal", "uk-modal-dialog uk-margin-auto-vertical")
-  
              .append(
               $("<div>")
                 .attr("class", "uk-modal-dialog uk-modal-body")
                 .append(
                   $("<h2>").attr("class", "uk-modal-title"),
                   $("<p>").text("Modal content...").attr("class", "description"),
-                  $("<p>")
-                    .attr("class", "uk-text-right")
-                    .append(
-                      $("<button>")
-                        .attr(
-                          "class",
-                          "uk-button uk-button-default uk-modal-close"
-                        )
-                        .attr("type", "button")
-                        .text("Cancel"),
-                      $("<button>")
-                        .attr("class", "uk-button uk-button-primary")
-                        .attr("type", "button")
-                        .text("Save")
-                    )
+                  $("<p>").attr("class", "uk-text-right").append(
+                    $("<button>")
+                      .attr("class", "uk-button uk-button-default uk-modal-close")
+                      .attr("type", "button")
+                      .text("Cancel"),
+                    $("<button>")
+                      .attr("class", "uk-button uk-button-primary")
+                      .attr("type", "button")
+                      .text("Save")
+                  )
                 )
             );
   
@@ -148,7 +132,6 @@ function stockPreviousClose(ticker) {
           );
           ulEl.append(tradingVolumeLiEl);
   
-  
           let volumeWeightedAvgPrice = $(
             "<li>Volume Weighted Average Price: " + data.results[0].vw + "</li>"
           );
@@ -159,17 +142,16 @@ function stockPreviousClose(ticker) {
           });
         
           sectionEl.css({
-            display: "flex",
-            color: "white",
+            "display": "flex",
+            "color": "white",
             "background-color": "#080097",
             "flex-direction": "column",
-            width: "fit-content",
-            //text align left except ticker (in a span)
+            "width": "fit-content",
             "text-align": "center",
-            position: "relative",
+            "position": "relative",
             "border-radius": "10px",
-            padding: "15px",
-            margin: "45px",
+            "padding": "15px",
+            "margin": "45px",
           });
   
           sectionEl.append(ulEl);
@@ -209,35 +191,12 @@ function stockPreviousClose(ticker) {
             sectionEl.append(favFalseBtn);
             favFalseBtn.on("click", favoriteClickHandler)
           }
-  
+          
           //makes the close button erase the div that contains it
-          closeBtn.attr("id", tickerSymbol + "-btn");
+          closeBtn.attr("id", tickerSymbol + "-btn")
           $("#" + tickerSymbol + "-btn").on("click", function () {
-            $("#" + tickerSymbol).remove();
-          });
+            $("#" + tickerSymbol).remove()
+          })
         }
       });
   }
-  
-  $(document).on("click", "#card #newsModalButton", function () {
-    //grabs the ticker of the card so it can be plugged into the endpoint
-    let ticker = $(this).siblings("h3").text();
-    let alphaVantageKey = "PUZOI2F17H6KBPQC";
-    let apiUrl = `https://www.alphavantage.co/query?function=OVERVIEW&symbol=${ticker}&apikey= +${alphaVantageKey}`;
-    fetch(apiUrl)
-      .then(function (response) {
-        if (response.status !== 200) {
-          throw new Error("Not 200 response");
-        }
-        return response.json();
-      })
-      .then(function (data) {
-        console.log(data);
-        console.log(ticker);
-        $(".uk-modal-title").text(data.Name);
-        $(".description").text(data.Description);
-      })
-      .catch(function (error) {
-        console.log("Error:", error);
-      });
-  });
