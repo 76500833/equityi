@@ -109,3 +109,7 @@ main {
 #stock-look-up-form {
 color: white;
 }
+
+.uk-grid {
+    justify-content: space-evenly;
+}
