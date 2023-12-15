@@ -17,6 +17,13 @@ function populateActiveTickers() {
     })
     .then(parseNextPage);
 }
+//populates the Saved Favorites from local storage
+let savedFavorites = [];
+(function () {
+  if (localStorage.getItem("saved-favorites")) {
+    savedFavorites = JSON.parse(localStorage.getItem("saved-favorites"))
+  }
+})()
 /**
  * Parses the next page of data and updates the tickerObjects array.
  * If there is a next page, it fetches the data using the provided apiKey and recursively calls itself.
@@ -109,8 +116,10 @@ let displayedTickers = [];
   sectionEl.css({
     display: "flex",
     "justify-content": "center",
+
     // text align
   });
+
   $("main").before(sectionEl);
 
   sectionEl.append(formEl);
@@ -164,17 +173,19 @@ function stockPreviousClose(ticker) {
       if (data) {
         let tickerSymbol = data.results[0].T;
         let divEl = $("<div>").attr("id", tickerSymbol);
-        let sectionEl = $("<section>").attr("id", "card").css({
-          display: "flex",
-          "justify-content": "center",
-          "background-color": "rgb(4, 0, 81)",
-          "text-align": "center",
-        });
+
+        let sectionEl = $("<section>").attr("id", "card")
+          .css({
+            "display": "flex",
+            "justify-content": "center",
+            "background-color": "rgb(4, 0, 81)"
+          })
 
         let headerEl = $("<h3>" + tickerSymbol + "</h3>"); //creates a header element with text content of the ticker Title
         sectionEl.append(headerEl);
 
         //adding close btn
+
         let closeBtn = $(
           "<button " +
             "class = 'uk-position-absolute " +
@@ -191,18 +202,22 @@ function stockPreviousClose(ticker) {
             "class",
             "uk-button uk-button-default uk-margin-small-right uk-border-rounded"
           )
+
           .attr("id", "newsModalButton")
           // .attr("class", "uk-button uk-button-default uk-margin-small-right uk-align-center")
           .attr("type", "button")
           .attr("uk-toggle", "target: #newsModal")
           .css({
-            height: "fit-content",
+
+            "height": "fit-content",
             //worked perfectly thanks kev
             width: "100%",
             margin: "auto",
             color: "white",
           })
+
           .text("Learn More");
+
         //! appending news button
         sectionEl.append(newsModalButton);
         let modal = $("<div>")
@@ -212,14 +227,10 @@ function stockPreviousClose(ticker) {
           })
           .attr("id", "newsModal")
           .attr("uk-modal", "uk-modal-dialog uk-margin-auto-vertical")
-          // .css({
-          //   "display": "flex",
-          //   "justify-content": "center"
-          //     })    // .attr("class", "uk-flex uk-flex-center uk-flex-middle uk-position-center uk-margin-auto-vertical")
-          .append(
+
+           .append(
             $("<div>")
               .attr("class", "uk-modal-dialog uk-modal-body")
-
               .append(
                 $("<h2>").attr("class", "uk-modal-title"),
                 $("<p>").text("Modal content...").attr("class", "description"),
@@ -248,42 +259,45 @@ function stockPreviousClose(ticker) {
           padding: "10px",
           margin: "0",
         });
+
         let openPriceLiEl = $("<li>Open Price: " + data.results[0].o + "</li>");
         ulEl.append(openPriceLiEl);
+
         let closePriceLiEl = $(
           "<li>Close Price: " + data.results[0].c + "</li>"
         );
         ulEl.append(closePriceLiEl);
+
         let highestPriceLiEl = $(
           "<li>Highest Price: " + data.results[0].h + "</li>"
         );
         ulEl.append(highestPriceLiEl);
+
         let lowestPriceLiEl = $(
           "<li>Lowest Price: " + data.results[0].l + "</li>"
         );
         ulEl.append(lowestPriceLiEl);
+
         let numOfTransactionsLiEl = $(
           "<li>Number of transactions: " + data.results[0].n + "</li>"
         );
         ulEl.append(numOfTransactionsLiEl);
+
         let tradingVolumeLiEl = $(
           "<li>Trading Volume: " + data.results[0].v + "</li>"
         );
         ulEl.append(tradingVolumeLiEl);
+
+
         let volumeWeightedAvgPrice = $(
           "<li>Volume Weighted Average Price: " + data.results[0].vw + "</li>"
         );
-        // $("main").css({
-        //   "display": "grid",
-        //   "grid-template-columns": "repeat(auto-fill, minmax(400px, 1fr))", // This will create as many columns as can fit without any of them having a width less than 250px
-        //   "gap": "20px",
-        // });
-
         ulEl.append(volumeWeightedAvgPrice);
 
         headerEl.css({
           color: "white",
         });
+      
         sectionEl.css({
           display: "flex",
           color: "white",
@@ -297,9 +311,45 @@ function stockPreviousClose(ticker) {
           padding: "15px",
           margin: "45px",
         });
+
         sectionEl.append(ulEl);
         divEl.append(sectionEl);
         $("main").append(divEl);
+
+        //both Fav buttons are created
+        let favTrueBtn = $("<i class='fas fa-star '></i>");
+        favTrueBtn.attr = ("id", tickerSymbol + "-fav-btn");
+        favTrueBtn.addClass(["uk-position-absolute", "uk-position-small", "uk-position-top-left"])
+
+        let favFalseBtn = $("<i class='far fa-star'></i>");
+        favFalseBtn.attr = ("id", tickerSymbol + "-fav-btn");
+        favFalseBtn.addClass(["uk-position-absolute", "uk-position-small", "uk-position-top-left"])
+
+        //this click handlers swaps the buttons, then created a new event
+        //handler for the swapped element that runs the same handler
+        function favoriteClickHandler(event) {
+          if ($(event.target).hasClass("fas")) {
+            $(event.target).replaceWith(favFalseBtn)
+            favFalseBtn.on("click", favoriteClickHandler)
+            let index = savedFavorites.indexOf(tickerSymbol)
+            savedFavorites.splice(index, 1)
+            localStorage.setItem("saved-favorites", JSON.stringify(savedFavorites))
+          } else {
+            $(event.target).replaceWith(favTrueBtn)
+            favTrueBtn.on("click", favoriteClickHandler)
+            savedFavorites.push(tickerSymbol)
+            localStorage.setItem("saved-favorites", JSON.stringify(savedFavorites))
+          }
+        }
+        //checks Saved favorites array to see if the ticker is saved a favorite
+        if (savedFavorites.includes(tickerSymbol)) {
+          sectionEl.append(favTrueBtn)
+          favTrueBtn.on("click", favoriteClickHandler)
+        } else {
+          sectionEl.append(favFalseBtn);
+          favFalseBtn.on("click", favoriteClickHandler)
+        }
+
         //makes the close button erase the div that contains it, and removes it from the displayed tickers array
         closeBtn.attr("id", tickerSymbol + "-btn");
         $("#" + tickerSymbol + "-btn").on("click", function () {
@@ -314,7 +364,6 @@ function stockPreviousClose(ticker) {
 $(document).on("click", "#card #newsModalButton", function () {
   //grabs the ticker of the card so it can be plugged into the endpoint
   let ticker = $(this).siblings("h3").text();
-
   let alphaVantageKey = "PUZOI2F17H6KBPQC";
   let apiUrl = `https://www.alphavantage.co/query?function=OVERVIEW&symbol=${ticker}&apikey= +${alphaVantageKey}`;
   fetch(apiUrl)
