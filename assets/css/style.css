@@ -101,15 +101,11 @@ h1 {
 main {
     flex-direction: row;
     align-items: center;
-    justify-content: center;
+    justify-content: start;
     text-align: center;
     width: 100vw; 
 }
 
 #stock-look-up-form {
 color: white;
-}
-
-.uk-grid {
-    justify-content: space-evenly;
 }
