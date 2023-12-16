@@ -56,6 +56,27 @@ function getApiTop() {
         ulList.append(closingPriceEl);
       }
 
+      olList.addEventListener("click", function (event) {
+        console.log(event.target.dataset.tickerName);
+        var tickerName = event.target.dataset.tickername;
+        var alphaVantageKey = "PUZOI2F17H6KBPQC";
+        var apiUrl = "https://www.alphavantage.co/query?function=OVERVIEW&symbol=" + tickerName + "&apikey=PUZOI2F17H6KBPQC";
+        fetch(apiUrl)
+          .then(function (response) {
+            console.log(response);
+            if (response.status !== 200) {
+              throw new Error("Not 200 response");
+            }
+            return response.json();
+          })
+          .then(function (data) {
+            console.log(data);
+          })
+          .catch(function (error) {
+            console.log("Error:", error);
+          });
+      })
+
     });
 }
 // fetchButtonTop.addEventListener('click', getApiTop);
@@ -119,12 +140,29 @@ function getApiBottom() {
         ulList.append(closingPriceEl);
       }
 
-      olList.addEventListener("click", function(event){
+      olList.addEventListener("click", function (event) {
         console.log(event.target.dataset.tickerName);
+        var tickerName = event.target.dataset.tickername;
+        var alphaVantageKey = "PUZOI2F17H6KBPQC";
+        var apiUrl = "https://www.alphavantage.co/query?function=OVERVIEW&symbol=" + tickerName + "&apikey=PUZOI2F17H6KBPQC";
+        fetch(apiUrl)
+          .then(function (response) {
+            console.log(response);
+            if (response.status !== 200) {
+              throw new Error("Not 200 response");
+            }
+            return response.json();
+          })
+          .then(function (data) {
+            console.log(data);
+          })
+          .catch(function (error) {
+            console.log("Error:", error);
+          });
       })
 
-        }
-      )
     }
+    )
+}
 
 // fetchButtonBottom.addEventListener('click', getApiBottom);
