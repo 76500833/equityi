@@ -55,32 +55,9 @@ function getApiTop() {
         ulList.append(highPriceEl);
         ulList.append(closingPriceEl);
       }
-
-      olList.addEventListener("click", function (event) {
-        console.log(event.target.dataset.tickerName);
-        var tickerName = event.target.dataset.tickername;
-        var alphaVantageKey = "PUZOI2F17H6KBPQC";
-        var apiUrl = "https://www.alphavantage.co/query?function=OVERVIEW&symbol=" + tickerName + "&apikey=PUZOI2F17H6KBPQC";
-        fetch(apiUrl)
-          .then(function (response) {
-            console.log(response);
-            if (response.status !== 200) {
-              throw new Error("Not 200 response");
-            }
-            return response.json();
-          })
-          .then(function (data) {
-            console.log(data);
-          })
-          .catch(function (error) {
-            console.log("Error:", error);
-          });
-      })
-
+      getApiBottom()
     });
 }
-// fetchButtonTop.addEventListener('click', getApiTop);
-
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //fetch request for polygon to pull the bottom 5
@@ -139,10 +116,14 @@ function getApiBottom() {
         ulList.append(highPriceEl);
         ulList.append(closingPriceEl);
       }
-
-      olList.addEventListener("click", function (event) {
+      //selects all nodes with "data-ticker-name" attribute, then applied an event listener to each
+      let allTickers = document.querySelectorAll("[data-ticker-name]")
+     allTickers.forEach(function (node){
+      node.addEventListener("click", function (event) {
+        console.log(event)
         console.log(event.target.dataset.tickerName);
-        var tickerName = event.target.dataset.tickername;
+        var tickerName = event.target.dataset.tickerName;
+        console.log(event.target)
         var alphaVantageKey = "PUZOI2F17H6KBPQC";
         var apiUrl = "https://www.alphavantage.co/query?function=OVERVIEW&symbol=" + tickerName + "&apikey=PUZOI2F17H6KBPQC";
         fetch(apiUrl)
@@ -160,9 +141,11 @@ function getApiBottom() {
             console.log("Error:", error);
           });
       })
-
+     })
+     
     }
     )
 }
 
-// fetchButtonBottom.addEventListener('click', getApiBottom);
+getApiTop()
+
