@@ -25,7 +25,7 @@ html {
     flex-direction: column;
     /* background-color: rgb(8, 0, 151); */
     background-color: #080097;
-    background-image: linear-gradient(135deg, #080097 0%, #7495ed 50%, #080097 100%);
+    background-image: linear-gradient(45deg, #000000 0%, #001c68 50%, #0044ff 100%);
     color: white;
     border-radius: 10px;
 }
@@ -40,7 +40,7 @@ html {
     flex-direction: column;
     /* background-color: rgb(8, 0, 151); */
     background-color: #080097;
-    background-image: linear-gradient(135deg, #080097 0%, #7495ed 50%, #080097 100%);
+    background-image: linear-gradient(135deg, #0044ff 0%, #001c68 25%, #000000 100%);
     color: white;
     border-radius: 10px;
 }

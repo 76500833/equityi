@@ -174,7 +174,7 @@ function stockPreviousClose(ticker) {
         let sectionEl = $("<section>").attr("id", "card").css({
           display: "flex",
           "justify-content": "center",
-          "background-color": "rgb(4, 0, 81)",
+          "background-image": "linear-gradient(135deg, #0044ff 0%, #001c68 25%, #000000 100%)",
         });
 
         let headerEl = $("<h3>" + tickerSymbol + "</h3>"); //creates a header element with text content of the ticker Title

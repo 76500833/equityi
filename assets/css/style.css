@@ -9,7 +9,7 @@ body, html {
 
 /*transperant navbar*/
 #navbar .uk-navbar-container {
-    background-color: rgb(8, 0, 153);
+    background-image: linear-gradient(135deg, #000000 0%, #001652 50%, #000000 100%);
 }
 #hamburgerContainer {
     display: flex;
@@ -20,13 +20,11 @@ body, html {
     color:white;
     font-size: 30px;
 }
-/*border radius to dropdown menu*/
+
 .uk-navbar-dropdown {
     border-radius: 10px;
-}
-.uk-navbar-dropdown {
-    background-color: rgb(4, 0, 81);
-    color: white;
+    background-image: linear-gradient(135deg, #000000 0%, #001652 50%, #000000 100%);
+    color: white !important;
 }
 
 /*hero image container*/
