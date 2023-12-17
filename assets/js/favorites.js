@@ -38,7 +38,7 @@ function stockPreviousClose(ticker) {
             .css({
               "display": "flex",
               "justify-content": "center",
-              "background-color": "rgb(4, 0, 81)"
+              "background-image": "linear-gradient(135deg, #0044ff 0%, #001c68 25%, #000000 100%)",
             })
   
           // let nameEl = $("<h3>") + nameForCard + "</h3>");
@@ -66,7 +66,7 @@ function stockPreviousClose(ticker) {
               "margin": "auto",
               "color": "white"
             })
-            .text("news articles");
+            .text("LEARN MORE");
   
           //! appending news button
           sectionEl.append(newsModalButton);

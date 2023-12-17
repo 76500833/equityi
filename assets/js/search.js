@@ -78,14 +78,15 @@ let displayedTickers = [];
     gap: "20px",
     "flex-direction": "row",
     "margin-top": "15px",
-    "margin-left": "20%",
-    "margin-right": "20%",
-    padding: "20px",
+    "margin-left": "auto",
+    "margin-right": "auto",
+    "width": "50%",
+    "padding": "20px",
     "border-radius": "10px",
-    "background-color": "rgb(4, 0, 156)",
+    "background-image": "linear-gradient(135deg, #000000 0%, #001652 50%, #000000 100%)",
     "align-items": "center",
     color: "white",
-    width: "fit-content",
+    "justify-content": "space-evenly"
   });
   //styling the header for the form
   formEl.append($("<label for='ticker-input'>Search by Ticker</label>")).css({
@@ -103,10 +104,15 @@ let displayedTickers = [];
       "text-align": "center",
       height: "20px", // Set a specific height
       "line-height": "20px", // Set line-height equal to the height
+      "width": "14%"
     })
   );
   formEl.append(
-    $("<input type='submit' id='ticker-input-submit' value='Search'>")
+    $("<input type='submit' id='ticker-input-submit' value='Search'>").css({
+      "background-color": "#001652",
+      "width": "20%",
+      "margin-left": "15%"
+    })
   );
 
   let sectionEl = $("<section>").attr("id", "sectionElForCard");
@@ -174,7 +180,7 @@ function stockPreviousClose(ticker) {
         let sectionEl = $("<section>").attr("id", "card").css({
           display: "flex",
           "justify-content": "center",
-          "background-color": "rgb(4, 0, 81)",
+          "background-image": "linear-gradient(135deg, #0044ff 0%, #001c68 25%, #000000 100%)",
         });
 
         let headerEl = $("<h3>" + tickerSymbol + "</h3>"); //creates a header element with text content of the ticker Title
