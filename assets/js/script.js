@@ -26,3 +26,14 @@
 //     });
 // }
 
+
+
+$(document).ready(function() {
+    $("#night").on('click', function() {
+        if ($('body').css('background-color') === 'rgb(0, 0, 0)') { // if the background color is black
+            $('body').css('background-color', 'white'); // change it to white
+        } else {
+            $('body').css('background-color', 'black'); // otherwise, change it to black
+        }
+    });
+});
