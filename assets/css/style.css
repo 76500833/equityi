@@ -78,6 +78,7 @@ h1 {
 .uk-open {
     width:fit-content;
     font-size: 30px;
+    left:140px !important;
 }
 
 #navAndSearch {
@@ -88,7 +89,7 @@ h1 {
                 -50px -50px 43px #8ab2ff;   
 }
 .uk-navbar-dropdown-nav i {
-    margin-right: 10px;
+    margin-right: 8px;
 }
 
 /*search button in drop bar curser to default*/
@@ -110,4 +111,8 @@ color: white;
 
 a {
     color:white !important;
+}
+
+#i {
+    font-family: serif;
 }
