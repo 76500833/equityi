@@ -1,17 +1,6 @@
 let apiKey = "okPpp2JvzuT94Kf1DJKeopxgFtX6BKXH";
 let activeTickers = {};
 
-//night mode
-$(document).ready(function() {
-  $("#night").on('click', function() {
-      if ($('main').css('background-color') === 'rgb(255, 255, 255)') { // if the background color is white
-          $('main').css('background-color', 'black'); // change it to black
-      } else {
-          $('main').css('background-color', 'white'); // otherwise, change it to white
-      }
-  });
-});
-
 let tickerObjects = [];
 //populates the activeTickers object with a timestamp, and an array of all active tickers
 function populateActiveTickers() {
@@ -192,6 +181,7 @@ function stockPreviousClose(ticker) {
           display: "flex",
           "justify-content": "center",
           "background-image": "linear-gradient(135deg, #0044ff 0%, #001c68 25%, #000000 100%)",
+          "border": "2px black"
         });
 
         let headerEl = $("<h3>" + tickerSymbol + "</h3>"); //creates a header element with text content of the ticker Title
