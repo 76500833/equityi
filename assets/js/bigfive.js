@@ -103,7 +103,6 @@ function getApiBottom() {
         //Set the text of the list element to the JSON response's ticker property
         listItem.textContent = data.tickers[i].ticker;
         listItem.dataset.tickerName = data.tickers[i].ticker;
-        console.log(listItem.dataset.tickerName);
         olList.append(listItem);
         sectionContainer.append(olList);
         //creating ul elements that will be nested inside each ordered list element
@@ -146,6 +145,17 @@ function getApiBottom() {
           })
           .then(function (data) {
             console.log(data);
+            var stockName = document.createElement("p");
+            var stockDescription = document.createElement("p");
+            var stock50DayMovingAverage = document.createElement("p");
+            var stock52WeekHigh = document.createElement("p");
+            var stock52WeekLow = document.createElement("p");
+
+            stockName.textContent = "Stock Name: " + data.Name;
+            stockDescription.textContent = "Description: " + data.Description;
+            stock50DayMovingAverage.textContent = "50 day moving average: " + data.Name
+            stock52WeekHigh.textContent = "52 week high: " + data.Name
+            stock52WeekLow.textContent = "52 week low: " + data.Name
           })
           .catch(function (error) {
             console.log("Error:", error);
