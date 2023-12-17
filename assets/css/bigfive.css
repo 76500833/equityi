@@ -68,3 +68,13 @@ h2{
     color:white !important;
 
 }
+
+.hover:hover,
+.hover:focus,
+.hover:active {
+    color: rgb(21, 0, 253);
+    font-size: large;
+    transition: .5s;
+    font-weight: bold;
+    cursor: pointer;
+}
