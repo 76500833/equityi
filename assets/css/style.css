@@ -11,6 +11,17 @@ body, html {
 #navbar .uk-navbar-container {
     background-image: linear-gradient(135deg, #000000 0%, #001652 50%, #000000 100%);
 }
+
+.uk-navbar {
+    justify-content: space-between;
+    align-items: center;
+}
+
+#night {
+    height: fit-content;
+    color:white !important;
+
+}
 #hamburgerContainer {
     display: flex;
     align-items: center;
@@ -68,8 +79,8 @@ h1 {
 /* Dropdown goes to the rigt, not left */
 .uk-navbar-dropdown {
     /* left: auto !important; */
-    right: 100px !important;
-    top: 20px !important;
+    /* right: 100px !important;
+    top: 20px !important; */
     line-height: 30px;
 }
 #stock-look-up-tool:hover {
@@ -78,7 +89,7 @@ h1 {
 .uk-open {
     width:fit-content;
     font-size: 30px;
-    left:140px !important;
+    /* left:140px !important; */
 }
 
 #navAndSearch {
@@ -116,3 +127,4 @@ a {
 #i {
     font-family: serif;
 }
+

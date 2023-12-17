@@ -1,6 +1,17 @@
 let apiKey = "okPpp2JvzuT94Kf1DJKeopxgFtX6BKXH";
 let activeTickers = {};
 
+//night mode
+$(document).ready(function() {
+  $("#night").on('click', function() {
+      if ($('main').css('background-color') === 'rgb(255, 255, 255)') { // if the background color is white
+          $('main').css('background-color', 'black'); // change it to black
+      } else {
+          $('main').css('background-color', 'white'); // otherwise, change it to white
+      }
+  });
+});
+
 let tickerObjects = [];
 //populates the activeTickers object with a timestamp, and an array of all active tickers
 function populateActiveTickers() {

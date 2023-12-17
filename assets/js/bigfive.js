@@ -1,3 +1,14 @@
+//night mode
+$(document).ready(function() {
+  $("#night").on('click', function() {
+      if ($('main').css('background-color') === 'rgb(255, 255, 255)') { // if the background color is white
+          $('main').css('background-color', 'black'); // change it to black
+      } else {
+          $('main').css('background-color', 'white'); // otherwise, change it to white
+      }
+  });
+});
+
 let apiKey = "okPpp2JvzuT94Kf1DJKeopxgFtX6BKXH";
 // fetch request for Polygon API which will get top 5 stocks and bottom 5 stocks
 // depending on user input as well as the event listeners
@@ -118,7 +129,6 @@ function getApiBottom() {
         console.log(listItem.dataset.tickerName);
         olList.append(listItem);
         sectionContainer.append(olList);
-
         //creating ul elements that will be nested inside each ordered list element
         var ulList = document.createElement("ul");
         listItem.append(ulList);

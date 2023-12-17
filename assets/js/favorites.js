@@ -1,6 +1,17 @@
 
 let apiKey = "okPpp2JvzuT94Kf1DJKeopxgFtX6BKXH";
 
+//night mode
+$(document).ready(function() {
+  $("#night").on('click', function() {
+      if ($('body').css('background-color') === 'rgb(255, 255, 255)') { // if the background color is white
+          $('body').css('background-color', 'black'); // change it to black
+      } else {
+          $('body').css('background-color', 'white'); // otherwise, change it to white
+      }
+  });
+});
+
 let savedFavorites = [];
 (function () {
     if (localStorage.getItem("saved-favorites")) {
