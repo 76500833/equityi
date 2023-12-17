@@ -107,3 +107,7 @@ main {
 #stock-look-up-form {
 color: white;
 }
+
+a {
+    color:white !important;
+}
