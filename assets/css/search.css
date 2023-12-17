@@ -31,11 +31,6 @@ html {
 a {
   color:white !important;
 }
-#i {
-  display: inline;
-  font-family: "Lumanosimo", "Times New Roman", Times, serif;
-}
-
 /* Reduce the font-size when the screen width is 600px or less */
 @media (max-width: 773px) {
   #title {
@@ -89,4 +84,8 @@ a {
   border: white 1px solid;
   border-radius: 5px;
   padding: 5px;
+}
+
+#i {
+  font-family: serif;
 }
