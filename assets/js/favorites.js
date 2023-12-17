@@ -66,7 +66,7 @@ function stockPreviousClose(ticker) {
               "margin": "auto",
               "color": "white"
             })
-            .text("news articles");
+            .text("LEARN MORE");
   
           //! appending news button
           sectionEl.append(newsModalButton);

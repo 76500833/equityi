@@ -25,10 +25,12 @@ html {
   border-radius: 10px;
 }
 .uk-navbar-dropdown {
-  background-image: linear-gradient(135deg, #0044ff 0%, #001c68 25%, #000000 100%);
-  color: white;
+  background-image: linear-gradient(135deg, #000000 0%, #03002b 25%, #000000 100%);
+  border: 2px solid black;
 }
-
+a {
+  color:white !important;
+}
 #i {
   display: inline;
   font-family: "Lumanosimo", "Times New Roman", Times, serif;
