@@ -74,7 +74,7 @@ function getApiTop() {
         var closingPriceEl = document.createElement("li")
 
         //Adding text content to nexted li's
-        changePercentageEl.textContent = "Todays change percentage: " + data.tickers[i].todaysChangePerc + "%";
+        changePercentageEl.textContent = "Todays change percentage: " + Math.floor(data.tickers[i].todaysChangePerc) + "%";
         openingPriceEl.textContent = "Opening price: $" + data.tickers[i].day.o;
         highPriceEl.textContent = "Highest Price: $" + data.tickers[i].day.h;
         closingPriceEl.textContent = "Closing price: $" + data.tickers[i].day.c;
@@ -128,7 +128,7 @@ function getApiBottom() {
         var closingPriceEl = document.createElement("li")
 
         //Adding text content to nested li's
-        changePercentageEl.textContent = "Todays change percentage: " + data.tickers[i].todaysChangePerc + "%";
+        changePercentageEl.textContent = "Todays change percentage: " + Math.floor(data.tickers[i].todaysChangePerc) + "%";
         openingPriceEl.textContent = "Opening price: $" + data.tickers[i].day.o;
         highPriceEl.textContent = "Highest Price: $" + data.tickers[i].day.h;
         closingPriceEl.textContent = "Closing price: $" + data.tickers[i].day.c;
