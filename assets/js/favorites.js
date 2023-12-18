@@ -1,14 +1,15 @@
 let apiKey = "okPpp2JvzuT94Kf1DJKeopxgFtX6BKXH";
 
-let savedFavorites = [];
+let savedFavorites = [] ;
 (function () {
     if (localStorage.getItem("saved-favorites")) {
         savedFavorites = JSON.parse(localStorage.getItem("saved-favorites"))
         for (let i = 0; i < savedFavorites.length; i++) {
             stockPreviousClose(savedFavorites[i])
         }
-    } else {
-        //display modal saying you currently dont have any favorites saved
+    }
+    if (savedFavorites[0] == undefined) {
+      UIkit.modal.alert("You don't have any stocks currently favorited")
     }
 })()
 
@@ -24,7 +25,7 @@ function stockPreviousClose(ticker) {
     fetch(apiUrl)
       .then(function (response) {
         if (response.status !== 200) {
-          //To do: display modal clarifying the error
+          UIkit.modal.alert("Bad request, try again")
           return new Promise();
         }
         return response.json();

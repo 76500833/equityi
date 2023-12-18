@@ -10,7 +10,7 @@ function populateActiveTickers() {
   fetch(apiUrl)
     .then(function (response) {
       if (response.status !== 200) {
-        //To do: display modal clarifying the error
+        UIkit.modal.alert("Bad request, try again")
         return new Promise();
       }
       return response.json();
@@ -39,7 +39,7 @@ function parseNextPage(data) {
       fetch(nextPage + "&apiKey=" + apiKey)
         .then(function (response) {
           if (response.status !== 200) {
-            //To do: display modal clarifying the error
+            UIkit.modal.alert("Bad request, try again")
             return new Promise();
           }
           return response.json();
@@ -138,8 +138,7 @@ let displayedTickers = [];
     $("#ticker-input").val("");
 
     if (displayedTickers.includes(searchedTicker)) {
-      //TO DO: Change to modal
-      alert("You already have this ticker displayed");
+      UIkit.modal.alert("You already have this ticker displayed");
       return;
     }
 
@@ -147,8 +146,7 @@ let displayedTickers = [];
       displayedTickers.push(searchedTicker);
       stockPreviousClose(searchedTicker);
     } else {
-      //To do: CHange to modal
-      alert("This ticker doesn't exist/isn't currently active");
+      UIkit.modal.alert("This ticker doesn't exist/isn't currently active");
     }
   });
 })();
@@ -165,7 +163,7 @@ function stockPreviousClose(ticker) {
   fetch(apiUrl)
     .then(function (response) {
       if (response.status !== 200) {
-        //To do: display modal clarifying the error
+        UIkit.modal.alert("Bad request, try again")
         return new Promise();
       }
       return response.json();
@@ -202,12 +200,10 @@ function stockPreviousClose(ticker) {
           )
 
           .attr("id", "newsModalButton")
-          // .attr("class", "uk-button uk-button-default uk-margin-small-right uk-align-center")
           .attr("type", "button")
           .attr("uk-toggle", "target: #newsModal")
           .css({
             height: "fit-content",
-            //worked perfectly thanks kev
             width: "100%",
             margin: "auto",
             color: "white",
