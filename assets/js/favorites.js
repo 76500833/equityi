@@ -1,16 +1,7 @@
 
 let apiKey = "okPpp2JvzuT94Kf1DJKeopxgFtX6BKXH";
 
-//night mode
-$(document).ready(function() {
-  $("#night").on('click', function() {
-      if ($('body').css('background-color') === 'rgb(255, 255, 255)') { // if the background color is white
-          $('body').css('background-color', 'black'); // change it to black
-      } else {
-          $('body').css('background-color', 'white'); // otherwise, change it to white
-      }
-  });
-});
+
 
 let savedFavorites = [];
 (function () {
@@ -81,7 +72,7 @@ function stockPreviousClose(ticker) {
             $("#newsModalButton").on('click', function () {
               let ticker = $(this).siblings("h3").text();
               let alphaVantageKey = "PUZOI2F17H6KBPQC";
-              let apiUrl = `https://www.alphavantage.co/query?function=OVERVIEW&symbol=${ticker}&apikey= +${alphaVantageKey}`;
+              let apiUrl = `https://www.alphavantage.co/query?function=OVERVIEW&symbol=${ticker}&apikey=+${alphaVantageKey}`;
               fetch(apiUrl)
                 .then(function (response) {
                   if (response.status !== 200) {
