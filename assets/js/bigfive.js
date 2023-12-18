@@ -1,6 +1,4 @@
-//night mode
-
-
+//creates the modal thats dinamically displayed
 var modalDiv = document.createElement("div");
 modalDiv.setAttribute("id", "modal")
 modalDiv.setAttribute("uk-modal", "")
@@ -23,7 +21,6 @@ var stock50DayMovingAverage = document.createElement("p");
 var stock52WeekHigh = document.createElement("p");
 var stock52WeekLow = document.createElement("p");
 
-
 modalDiv.append(modalBodyDiv);
 modalBodyDiv.append(modalCloseBtn)
 modalBodyDiv.append(stockName)
@@ -33,14 +30,10 @@ modalBodyDiv.append(stock52WeekHigh)
 modalBodyDiv.append(stock52WeekLow)
 document.querySelector("body").append(modalDiv)
 
+
 let apiKey = "okPpp2JvzuT94Kf1DJKeopxgFtX6BKXH";
+
 // fetch request for Polygon API which will get top 5 stocks and bottom 5 stocks
-// depending on user input as well as the event listeners
-
-// var fetchButtonTop = document.getElementById("fetch-button-top");
-
-//getApi function is called when the fetchButtonTop is clicked
-
 function getApiTop() {
   var sectionContainer = document.querySelector("#top-container");
 
@@ -63,9 +56,8 @@ function getApiTop() {
       sectionContainer.append(header);
       // looping over the data object and creating list elements
       for (var i = 0; i < 5; i++) {
-        // var top5 = data.tickers[i].ticker;
         var listItem = document.createElement("li");
-        //   //Set the text of the list element to the JSON response's ticker property
+        //Set the text of the list element to the JSON response's ticker property
         listItem.textContent = data.tickers[i].ticker;
         listItem.dataset.tickerName = data.tickers[i].ticker;
         olList.append(listItem);
@@ -82,7 +74,6 @@ function getApiTop() {
         var closingPriceEl = document.createElement("li")
 
         //Adding text content to nexted li's
-        //I think day dosnt work on the weekend.
         changePercentageEl.textContent = "Todays change percentage: " + data.tickers[i].todaysChangePerc + "%";
         openingPriceEl.textContent = "Opening price: $" + data.tickers[i].day.o;
         highPriceEl.textContent = "Highest Price: $" + data.tickers[i].day.h;
@@ -96,10 +87,7 @@ function getApiTop() {
     });
 }
 
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //fetch request for polygon to pull the bottom 5
-// var fetchButtonBottom = document.getElementById("fetch-button-bottom")
-
 function getApiBottom() {
   var sectionContainer = document.querySelector("#bottom-container");
   var header = document.createElement("h2");
@@ -117,10 +105,7 @@ function getApiBottom() {
       return response.json();
     })
     .then(function (data) {
-      console.log(data)
-      // var sectionElement = document.createElement("div");
       var olList = document.createElement("ol");
-      // sectionElement.append(olList);
 
       // looping over the data object and creating list elements
       for (var i = 0; i < 5; i++) {
@@ -152,26 +137,22 @@ function getApiBottom() {
         ulList.append(highPriceEl);
         ulList.append(closingPriceEl);
       }
+
       //selects all nodes with "data-ticker-name" attribute, then applied an event listener to each
       let allTickers = document.querySelectorAll("[data-ticker-name]")
      allTickers.forEach(function (node){
       node.addEventListener("click", function (event) {
-        console.log(event)
-        console.log(event.target.dataset.tickerName);
         var tickerName = event.target.dataset.tickerName;
-        console.log(event.target)
         var alphaVantageKey = "M6WHVXVNWE61HB6K";
         var apiUrl = "https://www.alphavantage.co/query?function=OVERVIEW&symbol=" + tickerName + "&apikey=" + alphaVantageKey;
         fetch(apiUrl)
           .then(function (response) {
-            console.log(response);
             if (response.status !== 200) {
               throw new Error("Not 200 response");
             }
             return response.json();
           })
           .then(function (data) {
-            console.log(data);
 
             stockName.textContent = "Stock Name: " + data.Name;
             stockDescription.textContent = "Description: " + data.Description;

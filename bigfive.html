@@ -22,7 +22,6 @@
 </head>
 
 <body>
-    <!--navbar-->
     <nav id="navbar" uk-sticky="sel-target: .uk-navbar-container; cls-active: uk-navbar-sticky; end: + *; offset: 80;">
         <div class="uk-navbar-container">
             <div class="uk-container" id="Nav">
@@ -30,25 +29,23 @@
                     <div class="uk-navbar-left">
                         <ul class="uk-navbar-nav">
                             <li>
-                                <a id="equityI" href="index.html">Equity I</a>
+                                <a id="equityI" href="index.html">Equity <span id="i">I</span></a>
                             </li>
                             <li id="hamburgerContainer">
-                                <!-- <div class="uk-navbar-toggle" uk-navbar-toggle-icon href=""></div> -->
-                                    <!--<a href="#" class="options"><li><a href="#">functionality</i></a>-->
+
                                         
-                                        <i class="fas fa-bars" style="color: white; font-size: 30px;"></i>
+                                <i class="fas fa-bars" style="color: white; font-size: 30px;"></i>
                                    
                                 <div class="uk-navbar-dropdown">
                                     <ul class="uk-nav uk-navbar-dropdown-nav">
                                         <li><a href="favorites.html" ><i class="far fa-star"></i>Favorites</a></li>
-                                        <li><a href="bigfive.html" ><i class="fas fa-poll"></i>Movers</a></li>
+                                        <li><a href="bigfive.html" ><i class="fas fa-poll"></i>Biggest Movers</a></li>
                                         <li><a href="search.html" id="stock-look-up-tool"><i class="fas fa-search"> </i>Stocks</a></li>
                                     </ul>                        
                                 </div>
                             </li>
                         </ul>                   
-                    </div>
-                    <!-- <button class="uk-button uk-button-default" id="night">Night Mode Toggle</button>                                -->
+                    </div>                           
                 </div>          
             </div>
         </div>
@@ -62,7 +59,6 @@
         <div id="bottom-container">
         </div>
     </div>
-  <!--TODO put some stuff here that goes away when you click equity I-->
 </main>
 
     <script src="assets/js/bigfive.js"></script>
