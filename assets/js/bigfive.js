@@ -156,9 +156,9 @@ function getApiBottom() {
 
             stockName.textContent = "Stock Name: " + data.Name;
             stockDescription.textContent = "Description: " + data.Description;
-            stock50DayMovingAverage.textContent = "50 day moving average: " + data.Name
-            stock52WeekHigh.textContent = "52 week high: " + data.Name
-            stock52WeekLow.textContent = "52 week low: " + data.Name
+            stock50DayMovingAverage.textContent = "50 day moving average: " + data["50DayMovingAverage"]
+            stock52WeekHigh.textContent = "52 week high: " + data["52WeekHigh"]
+            stock52WeekLow.textContent = "52 week low: " + data['52WeekLow']
             
             UIkit.modal(modalDiv).show()
 
