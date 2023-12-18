@@ -9,6 +9,38 @@ $(document).ready(function() {
   });
 });
 
+var modalDiv = document.createElement("div");
+modalDiv.setAttribute("id", "modal")
+modalDiv.setAttribute("uk-modal", "")
+modalDiv.setAttribute("class", "uk-width-1-1")
+
+var modalBodyDiv = document.createElement("div");
+modalBodyDiv.setAttribute("class","uk-modal-dialog uk-modal-body");
+modalBodyDiv.setAttribute("uk-overflow-auto","")
+
+var modalCloseBtn = document.createElement("button");
+modalCloseBtn.setAttribute("class", "uk-modal-close-default");
+modalCloseBtn.setAttribute("type", "button");
+modalCloseBtn.setAttribute("uk-close", "");
+
+var stockName = document.createElement("h3");
+stockName.setAttribute("class","uk-modal-title");
+
+var stockDescription = document.createElement("p");
+var stock50DayMovingAverage = document.createElement("p");
+var stock52WeekHigh = document.createElement("p");
+var stock52WeekLow = document.createElement("p");
+
+
+modalDiv.append(modalBodyDiv);
+modalBodyDiv.append(modalCloseBtn)
+modalBodyDiv.append(stockName)
+modalBodyDiv.append(stockDescription)
+modalBodyDiv.append(stock50DayMovingAverage)
+modalBodyDiv.append(stock52WeekHigh)
+modalBodyDiv.append(stock52WeekLow)
+document.querySelector("body").append(modalDiv)
+
 let apiKey = "okPpp2JvzuT94Kf1DJKeopxgFtX6BKXH";
 // fetch request for Polygon API which will get top 5 stocks and bottom 5 stocks
 // depending on user input as well as the event listeners
@@ -91,6 +123,7 @@ function getApiBottom() {
       return response.json();
     })
     .then(function (data) {
+      console.log(data)
       // var sectionElement = document.createElement("div");
       var olList = document.createElement("ol");
       // sectionElement.append(olList);
@@ -133,8 +166,8 @@ function getApiBottom() {
         console.log(event.target.dataset.tickerName);
         var tickerName = event.target.dataset.tickerName;
         console.log(event.target)
-        var alphaVantageKey = "PUZOI2F17H6KBPQC";
-        var apiUrl = "https://www.alphavantage.co/query?function=OVERVIEW&symbol=" + tickerName + "&apikey=PUZOI2F17H6KBPQC";
+        var alphaVantageKey = "M6WHVXVNWE61HB6K";
+        var apiUrl = "https://www.alphavantage.co/query?function=OVERVIEW&symbol=" + tickerName + "&apikey=" + alphaVantageKey;
         fetch(apiUrl)
           .then(function (response) {
             console.log(response);
@@ -145,17 +178,15 @@ function getApiBottom() {
           })
           .then(function (data) {
             console.log(data);
-            var stockName = document.createElement("p");
-            var stockDescription = document.createElement("p");
-            var stock50DayMovingAverage = document.createElement("p");
-            var stock52WeekHigh = document.createElement("p");
-            var stock52WeekLow = document.createElement("p");
 
             stockName.textContent = "Stock Name: " + data.Name;
             stockDescription.textContent = "Description: " + data.Description;
             stock50DayMovingAverage.textContent = "50 day moving average: " + data.Name
             stock52WeekHigh.textContent = "52 week high: " + data.Name
             stock52WeekLow.textContent = "52 week low: " + data.Name
+            
+            UIkit.modal(modalDiv).show()
+
           })
           .catch(function (error) {
             console.log("Error:", error);
@@ -168,4 +199,3 @@ function getApiBottom() {
 }
 
 getApiTop()
-
