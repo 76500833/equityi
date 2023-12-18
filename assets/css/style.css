@@ -104,3 +104,36 @@ a {
 #hamburgerContainer {
     cursor: pointer;
 }
+
+/*night mode functionality*/
+#stock-look-up-form {
+    height: 80px;
+  }
+  
+  #night-mode {
+    background: #03002b;
+    background-image: linear-gradient(135deg, #03002b 0%, #03002b 25%, #000000 100%);
+    color: white;
+    width: 200px;
+  }
+
+  #stock-look-up-tool {
+    position: relative;
+    display: inline-block;
+  }
+  
+  #stock-look-up-tool::after {
+    content: "Search for specific stock information";
+    position: absolute;
+    visibility: hidden;
+    background-color: white;
+    color: #fff;
+    text-align: center;
+    padding: 5px 10px;
+    border-radius: 6px;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    opacity: 0;
+    transition: opacity 0.3s;
+  }

@@ -115,15 +115,18 @@ let displayedTickers = [];
     })
   );
 
-  let sectionEl = $("<section>").attr("id", "sectionElForCard");
-  sectionEl.css({
-    display: "flex",
-    "justify-content": "center",
+  //night mode functionality
+  $("#night-mode").on("click", function() {
+    if ($("main").css("background-color") === "rgb(0, 0, 0)") {
+      $("main").css({"background-color": "white"});
+      $("#night-mode").html("dark mode");
+    } else {
+      $("main").css({"background-color": "black"});
+      $("#night-mode").html("light mode");
+    }
   });
 
-  $("main").before(sectionEl);
-
-  sectionEl.append(formEl);
+  $("main").append(formEl);
 
   $("#ticker-input").on("keydown", function (event) {
     if (event.originalEvent.key == "Enter") {

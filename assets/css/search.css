@@ -92,6 +92,26 @@ a {
 
 #ticker-input-submit {
   cursor: pointer;
-
 }
 
+
+/*for dark mode*/
+.uk-grid-stack {
+  display: flex;
+  justify-content: center;
+  
+  height: 100vh;
+}
+
+
+/*night mode functionality*/
+#stock-look-up-form {
+  height: 80px;
+}
+
+#night-mode {
+  background: #03002b;
+  background-image: linear-gradient(135deg, #03002b 0%, #03002b 25%, #000000 100%);
+  color: white;
+  width: 200px;
+}
