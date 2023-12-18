@@ -1,13 +1,5 @@
 //night mode
-$(document).ready(function() {
-  $("#night").on('click', function() {
-      if ($('main').css('background-color') === 'rgb(255, 255, 255)') { // if the background color is white
-          $('main').css('background-color', 'black'); // change it to black
-      } else {
-          $('main').css('background-color', 'white'); // otherwise, change it to white
-      }
-  });
-});
+
 
 let apiKey = "okPpp2JvzuT94Kf1DJKeopxgFtX6BKXH";
 // fetch request for Polygon API which will get top 5 stocks and bottom 5 stocks
@@ -32,6 +24,7 @@ function getApiTop() {
       return response.json();
     })
     .then(function (data) {
+      
       var olList = document.createElement("ol");
       var header = document.createElement("h2");
       header.textContent = "Top 5 Movers";
@@ -57,10 +50,12 @@ function getApiTop() {
         var closingPriceEl = document.createElement("li")
 
         //Adding text content to nexted li's
+        //I think day dosnt work on the weekend.
         changePercentageEl.textContent = "Todays change percentage: " + data.tickers[i].todaysChangePerc + "%";
         openingPriceEl.textContent = "Opening price: $" + data.tickers[i].day.o;
         highPriceEl.textContent = "Highest Price: $" + data.tickers[i].day.h;
         closingPriceEl.textContent = "Closing price: $" + data.tickers[i].day.c;
+        console.log(data.tickers[i])
         ulList.append(changePercentageEl);
         ulList.append(openingPriceEl);
         ulList.append(highPriceEl);
