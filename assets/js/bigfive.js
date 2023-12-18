@@ -55,7 +55,6 @@ function getApiTop() {
         openingPriceEl.textContent = "Opening price: $" + data.tickers[i].day.o;
         highPriceEl.textContent = "Highest Price: $" + data.tickers[i].day.h;
         closingPriceEl.textContent = "Closing price: $" + data.tickers[i].day.c;
-        console.log(data.tickers[i])
         ulList.append(changePercentageEl);
         ulList.append(openingPriceEl);
         ulList.append(highPriceEl);
