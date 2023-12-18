@@ -100,3 +100,7 @@ a {
 #i {
     font-family: serif;
 }
+
+#hamburgerContainer {
+    cursor: pointer;
+}

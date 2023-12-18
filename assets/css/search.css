@@ -13,6 +13,7 @@ html {
 #hamburgerContainer {
   display: flex;
   align-items: center;
+  cursor: pointer;
 }
 
 #equityI {
@@ -88,3 +89,9 @@ a {
   justify-content: space-between;
   align-items: center;
 }
+
+#ticker-input-submit {
+  cursor: pointer;
+
+}
+
