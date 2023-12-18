@@ -13,6 +13,7 @@ html {
     justify-content: space-evenly;
     width: 100%;
     overflow: none;
+    flex-wrap: wrap;
 }
 
 #top-container {

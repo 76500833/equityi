@@ -64,25 +64,6 @@ function stockPreviousClose(ticker) {
               "color": "white"
             })
             .text("LEARN MORE");
-            $("#newsModalButton").on('click', function () {
-              let ticker = $(this).siblings("h3").text();
-              let alphaVantageKey = "PUZOI2F17H6KBPQC";
-              let apiUrl = `https://www.alphavantage.co/query?function=OVERVIEW&symbol=${ticker}&apikey=+${alphaVantageKey}`;
-              fetch(apiUrl)
-                .then(function (response) {
-                  if (response.status !== 200) {
-                    throw new Error("Not 200 response");
-                  }
-                  return response.json();
-                })
-                .then(function (data) {
-                  $(".uk-modal-title").text(data.Name);
-                  $(".description").text(data.Description);
-                })
-                .catch(function (error) {
-                  console.log("Error:", error);
-                });
-            })
 
           //! appending news button
           sectionEl.append(newsModalButton);
@@ -217,3 +198,24 @@ function stockPreviousClose(ticker) {
         }
       });
   }
+
+  $(document).on("click", "#card #newsModalButton", function () {
+    //grabs the ticker of the card so it can be plugged into the endpoint
+    let ticker = $(this).siblings("h3").text();
+    let alphaVantageKey = "PUZOI2F17H6KBPQC";
+    let apiUrl = `https://www.alphavantage.co/query?function=OVERVIEW&symbol=${ticker}&apikey=${alphaVantageKey}`;
+    fetch(apiUrl)
+      .then(function (response) {
+        if (response.status !== 200) {
+          throw new Error("Not 200 response");
+        }
+        return response.json();
+      })
+      .then(function (data) {
+        $(".uk-modal-title").text(data.Name);
+        $(".description").text(data.Description);
+      })
+      .catch(function (error) {
+        console.log("Error:", error);
+      });
+  });
