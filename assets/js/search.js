@@ -119,8 +119,6 @@ let displayedTickers = [];
   sectionEl.css({
     display: "flex",
     "justify-content": "center",
-
-    // text align
   });
 
   $("main").before(sectionEl);
@@ -188,7 +186,6 @@ function stockPreviousClose(ticker) {
         sectionEl.append(headerEl);
 
         //adding close btn
-
         let closeBtn = $(
           "<button " +
             "class = 'uk-position-absolute " +
@@ -387,8 +384,6 @@ $(document).on("click", "#card #newsModalButton", function () {
       return response.json();
     })
     .then(function (data) {
-      console.log(data);
-      console.log(ticker);
       $(".uk-modal-title").text(data.Name);
       $(".description").text(data.Description);
     })

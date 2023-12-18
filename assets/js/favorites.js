@@ -1,7 +1,4 @@
-
 let apiKey = "okPpp2JvzuT94Kf1DJKeopxgFtX6BKXH";
-
-
 
 let savedFavorites = [];
 (function () {
@@ -42,28 +39,25 @@ function stockPreviousClose(ticker) {
               "justify-content": "center",
               "background-image": "linear-gradient(135deg, #0044ff 0%, #001c68 25%, #000000 100%)",
             })
-  
-          // let nameEl = $("<h3>") + nameForCard + "</h3>");
-          let headerEl = $("<h3>" + tickerSymbol + "</h3>"); //creates a header element with text content of the ticker Title
+
+            //creates a header element with text content of the ticker Title
+            let headerEl = $("<h3>" + tickerSymbol + "</h3>"); 
           sectionEl.append(headerEl);
   
           //adding close btn
           let closeBtn = $("<button " + "class = 'uk-position-absolute " +
             "uk-position-small " +
             "uk-position-top-right' " +
-            "type='button' uk-close></button>");
-  
+            "type='button' uk-close></button>"); 
           sectionEl.append(closeBtn)
   
           let newsModalButton = $("<button>")
             .attr("class", "uk-button uk-button-default uk-margin-small-right")
             .attr("id", "newsModalButton")
-            // .attr("class", "uk-button uk-button-default uk-margin-small-right uk-align-center")
             .attr("type", "button")
             .attr("uk-toggle", "target: #newsModal")
             .css({
               "height": "fit-content",
-              //worked perfectly thanks kev
               "width": "100%",
               "margin": "auto",
               "color": "white"
@@ -81,8 +75,6 @@ function stockPreviousClose(ticker) {
                   return response.json();
                 })
                 .then(function (data) {
-                  console.log(data);
-                  console.log(ticker);
                   $(".uk-modal-title").text(data.Name);
                   $(".description").text(data.Description);
                 })
@@ -90,6 +82,7 @@ function stockPreviousClose(ticker) {
                   console.log("Error:", error);
                 });
             })
+
           //! appending news button
           sectionEl.append(newsModalButton);
           let modal = $("<div>")
@@ -205,6 +198,7 @@ function stockPreviousClose(ticker) {
               localStorage.setItem("saved-favorites", JSON.stringify(savedFavorites))
             }
           }
+          
           //checks Saved favorites array to see if the ticker is saved a favorite
           if (savedFavorites.includes(tickerSymbol)) {
             sectionEl.append(favTrueBtn)
