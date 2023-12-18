@@ -52,10 +52,6 @@ a {
   line-height: 30px;
 }
 
-.uk-open {
-  width: fit-content;
-}
-
 #navAndSearch {
   display: flex;
   justify-content: center;
