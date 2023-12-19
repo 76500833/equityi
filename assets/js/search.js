@@ -370,7 +370,7 @@ function stockPreviousClose(ticker) {
 $(document).on("click", "#card #newsModalButton", function () {
   //grabs the ticker of the card so it can be plugged into the endpoint
   let ticker = $(this).siblings("h3").text();
-  let alphaVantageKey = "PUZOI2F17H6KBPQC";
+  let alphaVantageKey = "MVOISL9RC4Y4A2DR";
   let apiUrl = `https://www.alphavantage.co/query?function=OVERVIEW&symbol=${ticker}&apikey=${alphaVantageKey}`;
   fetch(apiUrl)
     .then(function (response) {
