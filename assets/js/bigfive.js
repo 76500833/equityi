@@ -143,7 +143,7 @@ function getApiBottom() {
      allTickers.forEach(function (node){
       node.addEventListener("click", function (event) {
         var tickerName = event.target.dataset.tickerName;
-        var alphaVantageKey = "M6WHVXVNWE61HB6K";
+        var alphaVantageKey = "MVOISL9RC4Y4A2DR";
         var apiUrl = "https://www.alphavantage.co/query?function=OVERVIEW&symbol=" + tickerName + "&apikey=" + alphaVantageKey;
         fetch(apiUrl)
           .then(function (response) {
