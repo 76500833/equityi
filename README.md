@@ -1,6 +1,6 @@
 # Equity I
-https://76500833.github.io/equityi/
 ![image](https://github.com/76500833/equityi/assets/145300587/6b65fccc-85f3-4f29-94c5-f856d6830985)
+- https://76500833.github.io/equityi/ 
 
 ## Description
 - Equity I is a modern FinTech app that allows users to pull data of your favorite stocks as well as pull the top 5 biggest stock movers in both the positive and negative direction. You are also able to click on the ticker symbols or the learn more buttons to pull up a modal with more information about the stock such as the company name, short description, 50 day moving average, 52 day high and 52 day low.
